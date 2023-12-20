@@ -11,38 +11,38 @@
 /* ************************************************************************** */
 
 /*****************************************************************************
- * bibliotheque <string>													 *
- * std::string::length	-> renvoie la longueur de la chaine de caracteres	 *
- * std::string::substr	-> renvoie une sous-chaine de la chaine originale.	 *
- * 							parametres: position de debut et longueur de la	 *
- * 							sous-chaine a extraire							 *
- * std::getline			-> utilise pour lire une ligne de texte depuis		 *
- * 							le flux d'entree								 *
- * 																			 *
- * bibliotheque <iostream>													 *
- * std::cin.fail() 		-> utilise pour verifier si une operation d'entree 	 *
- * 							precedente a echoue. 							 *
- * std::cin.clear(); 	-> utilise pour reinitialiser l'etat d'un flux		 *
- * std::cin.ignore		-> utilise pour ignorer des caracteres dans un		 *
- * 							flux d'entree. Souvent utilise pour vider le	 *
- * 							tampon d'entree									 *
- * 																			 *
- * bibliotheque <iomanip>													 *
- * std::setw()			-> utilise pour specifier la largeur de champ pour	 *
- * 							la prochaine operation d'entree/sortie. Souvent	 *
- * 							utilise avec std::cout pour formater l'affichage *
- * 							en definissant le nombre de caracteres
- * 							a utiliser										 *
- * 																			 *
- * bibliotheque <limits>													 *
- * std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');		 *
- * 						-> permet d'ignorer un nombre maximum de caracteres	 *
- * 							dans le flux d'entree standard jusqu'au retour a *
- * 							la ligne. Technique pour nettoyer le tampon		 *
- * 							d'entree apres une entree invalide				 *
- * index >= std::min(_contactIndex, 8))										 *
- * 						-> utilise ici pour limiter l'index de recherche 	 *
- * 							a la plage des indices valides du tableau		 *
+ * bibliotheque <string>							*
+ * std::string::length	-> renvoie la longueur de la chaine de caracteres	*
+ * std::string::substr	-> renvoie une sous-chaine de la chaine originale.	*
+ * 			parametres: position de debut et longueur de la		*
+ * 			sous-chaine a extraire					*
+ * std::getline		-> utilise pour lire une ligne de texte depuis		*
+ * 			le flux d'entree					*
+ * 										*
+ * bibliotheque <iostream>							*
+ * std::cin.fail() 	-> utilise pour verifier si une operation d'entree 	*
+ * 			precedente a echoue. 					*
+ * std::cin.clear(); 	-> utilise pour reinitialiser l'etat d'un flux		*
+ * std::cin.ignore	-> utilise pour ignorer des caracteres dans un		*
+ * 			flux d'entree. Souvent utilise pour vider le	 	*
+ * 			tampon d'entree						*
+ * 										*
+ * bibliotheque <iomanip>							*
+ * std::setw()		-> utilise pour specifier la largeur de champ pour	*
+ * 			la prochaine operation d'entree/sortie. Souvent	 	*
+ * 			utilise avec std::cout pour formater l'affichage 	*
+ * 			en definissant le nombre de caracteres			*
+ *			a utiliser						*
+ * 										*
+ * bibliotheque <limits>							*
+ * std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');		*
+ * 			-> permet d'ignorer un nombre maximum de caracteres	*
+ * 			dans le flux d'entree standard jusqu'au retour a 	*
+ * 			la ligne. Technique pour nettoyer le tampon		*
+ * 			d'entree apres une entree invalide			*
+ * index >= std::min(_contactIndex, 8))						*
+ * 			-> utilise ici pour limiter l'index de recherche 	*
+ * 			a la plage des indices valides du tableau		*
  ****************************************************************************/
 
 #include "PhoneBook.hpp"
@@ -95,9 +95,12 @@ void	PhoneBook::displayContacts() {
 	int	i = 0;
 	while (i < std::min(_contactIndex, 8)) {
 		std::cout << std::setw(10) << i << "|";
-		std::cout << std::setw(10) << _truncateString(_contacts[i].getFirstName()) << "|";
-		std::cout << std::setw(10) << _truncateString(_contacts[i].getLastName()) << "|";
-		std::cout << std::setw(10) << _truncateString(_contacts[i].getNickname()) << std::endl;
+		std::cout << std::setw(10) 
+			<< _truncateString(_contacts[i].getFirstName()) << "|";
+		std::cout << std::setw(10)
+			<< _truncateString(_contacts[i].getLastName()) << "|";
+		std::cout << std::setw(10)
+			<< _truncateString(_contacts[i].getNickname()) << std::endl;
 		i++;
 	}
 }
