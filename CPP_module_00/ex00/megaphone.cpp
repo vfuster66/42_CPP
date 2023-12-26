@@ -6,17 +6,17 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 09:34:49 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/20 14:28:21 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/26 14:13:07 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-/*****************************************************************************
- * bibliotheque <iostream>						     *
- * std::toupper() 	-> utilise pour convertir une caractere en 	     *
- * 			majuscule.	 				     *
- ****************************************************************************/
+/************************************************************************
+ * bibliotheque <iostream>						*
+ * std::toupper() 	-> utilise pour convertir une caractere en	*
+ * 			majuscule.					*
+ ***********************************************************************/
 
 int	main(int ac, char **av)
 {

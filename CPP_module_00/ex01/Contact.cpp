@@ -6,30 +6,32 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 08:30:24 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/20 12:06:33 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/26 14:15:15 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
 /************************************************************************
-*				     CONSTRUCTEUR                            *
+*			CONSTRUCTEUR					*
 ************************************************************************/
 
 Contact::Contact() {}
 
 /************************************************************************
-*				     DESTRUCTEUR  			                *
+*			DESTRUCTEUR					*
 ************************************************************************/
 
 Contact::~Contact() {}
 
 /************************************************************************
-*				     FONCTIONS   			                *
+*			FONCTIONS					*
 ************************************************************************/
 
-// Methodes getter - renvoient la valeur de l'attribut correspondant
-// Declarees 'const' -> ne modifient pas l'etat de l'objet 
+// METHODES GETTER //
+
+// Declarees 'const' -> ne modifient pas l'etat de l'objet
+
 std::string Contact::getFirstName() const {
     return _firstName;
 }
@@ -50,8 +52,10 @@ std::string Contact::getDarkestSecret() const {
     return _darkestSecret;
 }
 
-// Methodes setter - assignent de nouvelles valeurs aux attributs de l'objet
+// METHODES SETTER //
+
 // Prend un argument et l'assigne a l'attribut correspondant
+
 void Contact::setFirstName(const std::string &fname) {
     _firstName = fname;
 }
