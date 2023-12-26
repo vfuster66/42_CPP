@@ -1,0 +1,18 @@
+Hello world!
+This is a test file for the string replacement program.
+This line contains multiple occurrences of the word: test test test.
+This line ends with the word test.
+test This line starts with the word.
+A line with a single word: test
+A line with no occurrences of the word.
+Special characters: !@#$%^&*()_+{}|:"<>?`~[];'.,/\
+Numbers: 1234567890
+Unicode characters: äöüß€
+Empty line follows:
+
+The word 'test' appears at the beginning, in the middle, and at the end of this line: test middle test end test
+The word 'test' appears alongside other words: testing, tester, attest, protested.
+The word 'test' appears as part of other words: contest, testify, testament.
+Line with only spaces and the word:      test      .
+Tabbed line with the word:	test.
+Line with multiple spaces between words: this    is   a   test.
