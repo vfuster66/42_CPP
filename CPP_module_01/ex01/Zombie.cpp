@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 11:48:48 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/21 12:37:05 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/26 14:41:54 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,28 @@
 
 int	Zombie::_count = 0;
 
-/*****************************************************************************
- *                                 CONSTRUCTEUR                              *
-*****************************************************************************/
-
-Zombie::Zombie() : _name("Zombie") {
+Zombie::Zombie() : _name("Zombie")
+{
 	_count++;
+
 	std::cout <<_name << " " << _count << " is being created" << std::endl;
 }
 
-/*****************************************************************************
- *                                 DESTRUCTEUR                               *
-*****************************************************************************/
-
-Zombie::~Zombie() {
+Zombie::~Zombie()
+{
 	_count++;
+
 	std::cout <<_name << " " << _count << " is being destroyed" << std::endl;
 }
 
-/*****************************************************************************
- *                                 FONCTIONS                                 *
-*****************************************************************************/
-
-void	Zombie::announce(void) {
+void	Zombie::announce(void) const
+{
 	_count++;
+
 	std::cout << _name << " " << _count << ":BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-// Permet de definir ou de changer le nom du zombie
-void Zombie::setName(const std::string& name) {
+void Zombie::setName(const std::string& name)
+{
 	_name = name;
 }

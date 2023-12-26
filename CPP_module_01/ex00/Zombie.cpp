@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 09:04:17 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/26 10:27:30 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/26 14:40:01 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@
  *                                 CONSTRUCTEUR                              *
 *****************************************************************************/
 
-Zombie::Zombie(std::string name) : _name(name) {}
+Zombie::Zombie(std::string name) : _name(name)
+{
+}
 
 /*****************************************************************************
  *                                 DESTRUCTEUR                               *
 *****************************************************************************/
 
-Zombie::~Zombie() {
+Zombie::~Zombie()
+{
 	std::cout << _name << " is being destroyed" << std::endl;
 }
 
@@ -30,6 +33,7 @@ Zombie::~Zombie() {
  *                                 FONCTIONS                                 *
 *****************************************************************************/
 
-void	Zombie::announce(void) const {
+void	Zombie::announce(void) const
+{
 	std::cout << _name << ":BraiiiiiiinnnzzzZ..." << std::endl;
 }

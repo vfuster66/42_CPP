@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 11:48:31 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/21 12:38:36 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/26 14:42:56 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,25 @@ const std::string RESET = "\033[0m";
 
 class Zombie
 {
+
 public:
 	Zombie();
 	Zombie(std::string name);
+
 	~Zombie();
 
-	void	announce(void);
+	void	announce(void) const;
 	void	setName(const std::string &name);
 	static void resetCount() { _count = 0; }
 
 private:
 	std::string _name;
 	static int _count;
+
 };
 
-
-// newZombie.cpp
 Zombie* newZombie(std::string name);
 
-// zombieHorde.cpp
 Zombie* zombieHorde(int N, std::string name);
 
 #endif

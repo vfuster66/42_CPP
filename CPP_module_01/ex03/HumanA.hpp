@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:48:06 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/21 14:44:24 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/26 14:44:38 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 #include <string>
 #include <iostream>
 
-class HumanA {
+class HumanA
+{
 
 public:
 	HumanA(const std::string &name, Weapon &weapon);
+
 	~HumanA();
 
 	void attack() const;
@@ -28,6 +30,7 @@ public:
 private:
 	std::string _name;
 	Weapon &_weapon;
+
 };
 
 #endif

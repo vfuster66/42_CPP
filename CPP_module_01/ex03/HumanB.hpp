@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:50:36 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/21 14:44:18 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/26 15:00:53 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 #include <string>
 #include <iostream>
 
-class HumanB {
+class HumanB
+{
 
 public:
 	HumanB(const std::string &name);
+
 	~HumanB();
 
 	void setWeapon(Weapon &weapon);

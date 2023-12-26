@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:55:58 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/21 16:49:34 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/26 15:12:20 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class Harl
 
 public:
 	Harl();
+
 	~Harl();
 
 	void complain(std::string level);
