@@ -18,6 +18,7 @@ int	main() {
 	Zombie *zombie1 = newZombie("Georges");
 	zombie1->announce();
 
+	// Suppression de l'objet Zombie sur la heap	
 	delete zombie1;
 
 	// Creation d'un zombie sur la stack
