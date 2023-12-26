@@ -12,6 +12,8 @@
 
 #include "Zombie.hpp"
 
+// Cree un objet  Zombie temporaire sur la stack
+// La memoire est liberee des que la fonction se termine
 void	randomChump(std::string name) {
 	Zombie zombie(name);
 	zombie.announce();
