@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 
 /************************************************************************
-* bibliotheque <ctime>					 								                        *
-* std::time()		-> utilise pour obtenir l'heure actuelle                *
-*					du systeme											                              *
-* std::localtime()	-> utilise pour obtenir une representation plus	  	*
-* 					detaille de l'heure                                         * 
+* bibliotheque <ctime>					 		*
+* std::time()		-> utilise pour obtenir l'heure actuelle        *
+*					du systeme			*
+* std::localtime()	-> utilise pour obtenir une representation plus	*
+* 					detaille de l'heure             * 
 ************************************************************************/
 
 #include "Account.hpp"
@@ -28,8 +28,8 @@ int	Account::_totalAmount = 0;
 int	Account::_totalNbDeposits = 0;
 int	Account::_totalNbWithdrawals = 0;
 
-/***********************************************************************
-*							            CONSTRUCTEUR  							                 *
+/************************************************************************
+*				CONSTRUCTEUR  			        *
 ************************************************************************/
 
 // Definition constructeur - initialise un compte avec un depot initial -
@@ -44,8 +44,8 @@ Account::Account(int initial_deposit)
 		<< ";created" << std::endl;
 }
 
-/***********************************************************************
-*							            DESTRUCTEUR  							                   *
+/************************************************************************
+*				DESTRUCTEUR  			        *
 ************************************************************************/
 
 // Definition destructeur - Met a jour les variables statiques
@@ -56,8 +56,8 @@ Account::~Account() {
 		<< ";closed" << std::endl;
 }
 
-/***********************************************************************
-*							        METHODES D'HORODATAGE  					                 *
+/************************************************************************
+*			METHODES D'HORODATAGE  				*
 ************************************************************************/
 
 // Methode pour generer et afficher un horodatage formate a partir de 
@@ -74,8 +74,8 @@ void	Account::_displayTimestamp() {
 						<< tm->tm_sec << "] ";
 }
 
-/***********************************************************************
-*							          METHODES D'INSTANCE  					                 *
+/************************************************************************
+*			METHODES D'INSTANCE  				*
 ************************************************************************/
 
 // Traite un depot sur le compte, met a jour les variables
@@ -132,8 +132,8 @@ void	Account::displayStatus() const {
 				<< _nbWithdrawals << std::endl;
 }
 
-/***********************************************************************
-*							            METHODES STATIQUES  					               *
+/************************************************************************
+*			METHODES STATIQUES  				*
 ************************************************************************/
 
 
