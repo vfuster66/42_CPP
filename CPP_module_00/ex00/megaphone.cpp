@@ -12,6 +12,12 @@
 
 #include <iostream>
 
+/*****************************************************************************
+ * bibliotheque <iostream>						     *
+ * std::toupper() 	-> utilise pour convertir une caractere en 	     *
+ * 			majuscule.	 				     *
+ ****************************************************************************/
+
 int	main(int ac, char **av)
 {
 	if (ac == 1)
