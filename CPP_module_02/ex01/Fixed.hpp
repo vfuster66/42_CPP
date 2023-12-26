@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:04:32 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/22 09:58:40 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/26 15:52:55 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ public:
 	float	toFloat( void ) const;
 	int		toInt( void ) const;
 
-	friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
-	
 private:
 	int	_value;
 	static const int _fractionalBits;
+
 };
+
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed);
 
 #endif

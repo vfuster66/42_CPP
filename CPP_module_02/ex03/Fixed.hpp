@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 09:49:33 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/26 10:16:02 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/26 15:52:18 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,24 @@ public:
 	Fixed			&operator++();
 	Fixed			operator++(int);
 	Fixed			&operator--();
-    Fixed			operator--(int);
+	Fixed			operator--(int);
 
-	int				getRawBits( void ) const;
+	int			getRawBits( void ) const;
 	void			setRawBits( int const raw );
 	float			toFloat( void ) const;
-	int				toInt( void ) const;
+	int			toInt( void ) const;
 
-	static			Fixed &min(Fixed &a, Fixed &b);
+	static		Fixed &min(Fixed &a, Fixed &b);
 	static const	Fixed &min(const Fixed &a, const Fixed &b);
-	static			Fixed &max(Fixed &a, Fixed &b);
+	static		Fixed &max(Fixed &a, Fixed &b);
 	static const	Fixed &max(const Fixed &a, const Fixed &b);
 
 private:
-	int					_value;
+	int			_value;
 	static const int 	_fractionalBits;
 
-friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 };
+
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed);
 
 #endif

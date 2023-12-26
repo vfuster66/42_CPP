@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:04:32 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/22 09:44:24 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/26 15:20:40 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,21 @@
 
 class Fixed
 {
+
 public:
 	Fixed();
 	Fixed(const Fixed &other);
 	Fixed &operator=(const Fixed &other);
+	
 	~Fixed();
 
-	int		getRawBits( void ) const;
+	int	getRawBits( void ) const;
 	void	setRawBits( int const raw );
 	
 private:
-	int	_value;
-	static const int _fractionalBits = 8;
+	int			_value;
+	static const int	_fractionalBits = 8;
+
 };
 
 #endif

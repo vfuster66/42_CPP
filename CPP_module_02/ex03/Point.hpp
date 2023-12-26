@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 09:49:44 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/26 10:02:46 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/26 15:39:56 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 #include "Fixed.hpp"
 
-class Point {
+class Point
+{
+
 public:
 	Point();
 	Point(float const x, float const y);
@@ -31,6 +33,7 @@ public:
 private:
 	Fixed const _x;
 	Fixed const _y;
+
 };
 
 #endif

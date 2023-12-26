@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 09:49:40 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/26 10:07:50 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/26 15:39:32 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,26 @@
  *                                 CONSTRUCTEUR                              *
 *****************************************************************************/
 
-// Constructeur par default
-Point::Point() : _x(0), _y(0) {}
+Point::Point() : _x(0), _y(0)
+{
+}
 
-// Constructeur avec 2 parametres float
-Point::Point(float const xVal, float const yVal) : _x(xVal), _y(yVal) {}
+Point::Point(float const xVal, float const yVal) : _x(xVal), _y(yVal)
+{
+}
 
-// Copie du constructeur
-Point::Point(Point const &other) : _x(other._x), _y(other._y) {}
+Point::Point(Point const &other) : _x(other._x), _y(other._y)
+{
+}
 
-// Copie de l'operateur d'assignement
-Point &Point::operator=(Point const &other) {
-	if (this != &other) {
+Point &Point::operator=(Point const &other)
+{
+	if (this != &other)
+	{
 		const_cast<Fixed&>(this->_x) = other._x;
 		const_cast<Fixed&>(this->_y) = other._y;
 	}
+	
 	return *this;
 }
 
@@ -38,16 +43,20 @@ Point &Point::operator=(Point const &other) {
  *                                 DESTRUCTEUR                               *
 *****************************************************************************/
 
-Point::~Point() {}
+Point::~Point()
+{
+}
 
 /*****************************************************************************
  *                                 FONCTIONS                                 *
 *****************************************************************************/
 
-Fixed Point::getX() const {
+Fixed Point::getX() const
+{
 	return _x;
 }
 
-Fixed Point::getY() const {
+Fixed Point::getY() const
+{
 	return _y;
 }
