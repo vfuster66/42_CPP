@@ -12,6 +12,13 @@
 
 #include "Zombie.hpp"
 
+/***************************************************************************
+* new		-> allouer dynamiquement de la memoire sur le heap	   *
+			sera supprime avec delete			   *
+***************************************************************************/
+
 Zombie	*newZombie(std::string name) {
+	// cree un nouvel objet de type Zombie sur le heap
+	// L'objet va persister apres la fin de la fonction
 	return new Zombie(name);
 }
