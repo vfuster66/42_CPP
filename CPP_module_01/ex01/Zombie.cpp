@@ -36,11 +36,12 @@ Zombie::~Zombie() {
  *                                 FONCTIONS                                 *
 *****************************************************************************/
 
-void	Zombie::announce(void) const {
+void	Zombie::announce(void) {
 	_count++;
 	std::cout << _name << " " << _count << ":BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
+// Permet de definir ou de changer le nom du zombie
 void Zombie::setName(const std::string& name) {
 	_name = name;
 }
