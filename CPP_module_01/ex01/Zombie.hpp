@@ -26,7 +26,7 @@ public:
 	Zombie(std::string name);
 	~Zombie();
 
-	void	announce(void) const;
+	void	announce(void);
 	void	setName(const std::string &name);
 	static void resetCount() { _count = 0; }
 
