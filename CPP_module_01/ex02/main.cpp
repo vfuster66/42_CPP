@@ -14,8 +14,11 @@
 #include <string>
 
 int	main() {
+	// Variable de type std::string
 	std::string str = "HI THIS IS BRAIN";
+	// Pointeur vers la variable str
 	std::string *stringPTR = &str;
+	// Reference a la variable str
 	std::string &stringREF = str;
 
 	// Afficher les adresses
