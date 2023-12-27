@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 09:49:40 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/26 15:39:32 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/27 14:01:49 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ Point &Point::operator=(Point const &other)
 {
 	if (this != &other)
 	{
-		const_cast<Fixed&>(this->_x) = other._x;
-		const_cast<Fixed&>(this->_y) = other._y;
+		this->_x = other._x;
+		this->_y = other._y;
 	}
 	
 	return *this;

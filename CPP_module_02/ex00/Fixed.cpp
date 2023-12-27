@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:05:06 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/26 15:19:58 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/27 13:35:39 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ Fixed &Fixed::operator=(const Fixed &other)
  *                                 DESTRUCTEUR                               *
 *****************************************************************************/
 
-Fixed::Fixed::~Fixed()
+Fixed::~Fixed()
 {
 	std::cout << "Destructor Called" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 09:49:44 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/26 15:39:56 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/27 14:03:00 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ public:
 	Fixed getY() const;
 
 private:
-	Fixed const _x;
-	Fixed const _y;
+	Fixed _x;
+	Fixed _y;
 
 };
 
