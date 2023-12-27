@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:41:56 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/26 16:43:57 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/27 14:25:00 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ class FragTrap : public ClapTrap
 
 public:
 	FragTrap(const std::string &name);
+	FragTrap(const FragTrap &other);
+
+	FragTrap &operator=(const FragTrap &other);
 
 	~FragTrap();
 

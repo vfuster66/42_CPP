@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:48:43 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/26 16:49:23 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/27 14:34:40 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ class DiamondTrap : public ScavTrap, public FragTrap
 
 public:
 	DiamondTrap(const std::string &name);
+	DiamondTrap(const DiamondTrap &other);
+	
+	DiamondTrap &operator=(const DiamondTrap &other);
 	
 	~DiamondTrap();
 

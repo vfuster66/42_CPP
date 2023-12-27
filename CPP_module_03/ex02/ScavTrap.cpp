@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:11:29 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/26 16:39:10 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/27 14:22:13 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,21 @@ ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name)
 	this->_attackDamage = 20;
 
 	std::cout << "ScavTrap " << this->_name << " is created." << std::endl;
- }
+}
+
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
+{
+	std::cout << "ScavTrap copy constructor called for " << _name << std::endl;
+}
+
+ScavTrap &ScavTrap::operator=(const ScavTrap &other)
+{
+	if (this != &other)
+	{
+		ClapTrap::operator=(other);
+	}
+	return *this;
+}
 
 /*****************************************************************************
  *                                 DESTRUCTEUR                               *
