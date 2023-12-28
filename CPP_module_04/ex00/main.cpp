@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginiefusterperez <virginiefusterperez@s +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:23:59 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/27 21:32:00 by virginiefusterpe ###   ########.fr       */
+/*   Updated: 2023/12/28 08:45:55 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,6 @@ int main()
 	std::cout << MAGENTA << "Original Cat: " << originalCat.getType() << RESET << std::endl;
 	std::cout << MAGENTA << "Copied Cat: " << copyCat.getType() << RESET << std::endl;
 	std::cout << MAGENTA << "Assigned Cat: " << assignedCat.getType() << RESET << std::endl;
-
-	std::cout << "\nUnexpected Behavior Test (pedagogical):\n" << std::endl;
-	Animal* unexpectedAnimal = new Dog();
-	delete unexpectedAnimal;
 
 	return 0;
 }

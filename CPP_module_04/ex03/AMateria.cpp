@@ -1,98 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
+/*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 22:20:22 by virginiefus       #+#    #+#             */
-/*   Updated: 2023/12/28 09:51:07 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/28 10:52:49 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MateriaSource.hpp"
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 /*****************************************************************************
  *                                 CONSTRUCTEUR                              *
 *****************************************************************************/
 
-MateriaSource::MateriaSource()
+AMateria::AMateria(std::string const & type) : type(type)
 {
-	for (int i = 0; i < 4; ++i)
-	{
-		learnedMaterias[i] = 0;
-	}
 }
 
-MateriaSource::MateriaSource(const MateriaSource &src)
+AMateria::AMateria(const AMateria & src) : type(src.type)
 {
-	*this = src;
 }
 
-MateriaSource &MateriaSource::operator=(const MateriaSource &rhs)
+AMateria & AMateria::operator=(const AMateria & rhs)
 {
 	if (this != &rhs)
 	{
-		for (int i = 0; i < 4; ++i)
-		{
-			if (rhs.learnedMaterias[i] != 0)
-			{
-				this->learnedMaterias[i] = rhs.learnedMaterias[i]->clone();
-			}
-			else
-			{
-				this->learnedMaterias[i] = 0;
-			}
-		}
+		this->type = rhs.type;
 	}
-	return *this;
+	 return *this;
 }
 
 /*****************************************************************************
  *                                 DESTRUCTEUR                               *
 *****************************************************************************/
 
-MateriaSource::~MateriaSource()
+AMateria::~AMateria()
 {
-	for (int i = 0; i < 4; ++i)
-	{
-		if (learnedMaterias[i] != 0)
-		{
-			delete learnedMaterias[i];
-		}
-	}
 }
 
 /*****************************************************************************
  *                                 FONCTIONS                                 *
 *****************************************************************************/
 
-void MateriaSource::learnMateria(AMateria* m)
+std::string const & AMateria::getType() const
 {
-	for (int i = 0; i < 4; ++i)
-	{
-		if (learnedMaterias[i] == 0)
-		{
-			learnedMaterias[i] = m;
-			std::cout << "Learned Materia of type " << m->getType() << std::endl;
-			return ;
-		}
-	}
-	std::cout << "Materia Source is full, cannot learn more Materia" << std::endl;
-	delete m;
+	return this->type;
 }
 
-AMateria* MateriaSource::createMateria(std::string const &type)
+void AMateria::use(ICharacter& target)
 {
-	for (int i = 0; i < 4; ++i)
-	{
-		if (learnedMaterias[i] != 0 && learnedMaterias[i]->getType() == type)
-		{
-			return learnedMaterias[i]->clone();
-		}
-	}
-	std::cout << "No Materia of type " << type << " learned" << std::endl;
-	return 0;
+	std::cout << "Using AMateria on " << target.getName() << std::endl;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginiefusterperez <virginiefusterperez@s +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 22:20:22 by virginiefusterpe  #+#    #+#             */
-/*   Updated: 2023/12/27 22:36:21 by virginiefusterpe ###   ########.fr       */
+/*   Created: 2023/12/27 22:20:22 by virginiefus       #+#    #+#             */
+/*   Updated: 2023/12/28 09:48:08 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Character::Character(std::string const & name) : name(name)
 {
 	for (int i = 0; i < 4; ++i)
 	{
-		inventory[i] = nullptr;
+		inventory[i] = 0;
 	}
 }
 
@@ -39,13 +39,13 @@ Character & Character::operator=(const Character & rhs)
 		this->name = rhs.name;
 		for (int i = 0; i < 4; ++i)
 		{
-			if (rhs.inventory[i] != nullptr)
+			if (rhs.inventory[i] != 0)
 			{
 				this->inventory[i] = rhs.inventory[i]->clone();
 			}
 			else
 			{
-				this->inventory[i] = nullptr;
+				this->inventory[i] = 0;
 			}
 		}
 	}
@@ -60,7 +60,7 @@ Character::~Character()
 {
 	for (int i = 0; i < 4; ++i)
 	{
-		if (inventory[i] != nullptr)
+		if (inventory[i] != 0)
 		{
 			delete inventory[i];
 		}
@@ -78,15 +78,56 @@ std::string const & Character::getName() const
 
 void Character::equip(AMateria* m)
 {
-    // Code pour équiper une Materia dans l'inventaire
+	for (int i = 0; i < 4; ++i)
+	{
+		if (inventory[i] == 0)
+		{
+			inventory[i] = m;
+			std::cout << "Materia " << m->getType() << " equipped at slot " << i << std::endl;
+			return ;
+		}
+	}
+	std::cout << "Inventory full, cannot equip Materia " << m->getType() << std::endl;
 }
 
 void Character::unequip(int idx)
 {
-    // Code pour déséquiper une Materia de l'inventaire
+	if (idx >= 0 && idx < 4)
+	{
+		if (inventory[idx] != 0)
+		{
+			std::cout << "Materia " << inventory[idx]->getType() << " unequipped from slot " << idx << std::endl;
+			inventory[idx] = 0;
+		}
+		else
+		{
+			std::cout << "No Materia to unequip at slot " << idx << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "Invalid slot index " << idx << ", cannot unequip Materia" << std::endl;
+	}
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-    // Code pour utiliser une Materia de l'inventaire sur la cible
+	if (idx >= 0 && idx < 4)
+	{
+		if (inventory[idx] != 0)
+		{
+			std::cout << "Using Materia " << inventory[idx]->getType() << " on " << target.getName() << " from slot " << idx << std::endl;
+			inventory[idx]->use(target);
+		}
+		else
+		{
+			std::cout << "No Materia to use at slot " << idx << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "Invalid slot index " << idx << ", cannot use Materia" << std::endl;
+	}
 }
+
+

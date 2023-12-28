@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: virginiefusterperez <virginiefusterperez@s +#+  +:+       +#+         #
+#    By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 09:01:46 by vfuster-          #+#    #+#              #
-#    Updated: 2023/12/27 22:27:23 by virginiefusterpe ###   ########.fr        #
+#    Updated: 2023/12/28 09:01:37 by vfuster-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = 
+NAME = materiaSimulator
 
 # Nom du compilateur
 CC=g++
@@ -19,7 +19,7 @@ CC=g++
 CFLAGS=-Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC=main.cpp Amateria.cpp Ice.cpp
+SRC=main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
 
 # Object files
 OBJ=$(SRC:.cpp=.o)

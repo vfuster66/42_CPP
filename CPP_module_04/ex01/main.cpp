@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginiefusterperez <virginiefusterperez@s +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:23:59 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/27 21:49:08 by virginiefusterpe ###   ########.fr       */
+/*   Updated: 2023/12/28 08:50:48 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int main()
 	const Animal* dog = new Dog();
 	const Animal* cat = new Cat();
 
-	std::cout << RED << dog->getType() << " fait un son : ";
+	std::cout << RED << dog->getType() << " sound : ";
 	dog->makeSound();
 
-	std::cout << MAGENTA << cat->getType() << " fait un son : ";
+	std::cout << MAGENTA << cat->getType() << " sound : ";
 	cat->makeSound();
 
 	delete dog;
