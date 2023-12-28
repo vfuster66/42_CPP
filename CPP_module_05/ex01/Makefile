@@ -6,7 +6,7 @@
 #    By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 09:01:46 by vfuster-          #+#    #+#              #
-#    Updated: 2023/12/28 11:11:01 by vfuster-         ###   ########.fr        #
+#    Updated: 2023/12/28 16:55:57 by vfuster-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CC=g++
 CFLAGS=-Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC=main.cpp Bureaucrat.cpp
+SRC=main.cpp Bureaucrat.cpp Form.cpp
 
 # Object files
 OBJ=$(SRC:.cpp=.o)
