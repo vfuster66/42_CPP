@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:16:07 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 07:37:21 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/05 08:32:22 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ public:
 	~RobotomyRequestForm();
 
 	void executeAction() const;
+
+	static AForm* create(const std::string& target);
 
 private:
 	std::string _target;

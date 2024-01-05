@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:17:30 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/28 17:26:10 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/05 07:44:31 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	if (this != &other)
 	{
 		AForm::operator=(other);
-		const_cast<std::string&>(_target) = other._target;
+		_target = other._target;
 	}
 	return *this;
 }
@@ -50,7 +50,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 void ShrubberyCreationForm::executeAction() const
 {
-	std::ofstream outputFile(_target + "_shrubbery");
+	std::ofstream outputFile((_target + "_shrubbery").c_str());
 	if (!outputFile)
 	{
 		throw std::runtime_error("Failed to create the shrubbery file");

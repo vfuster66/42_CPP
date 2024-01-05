@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/28 10:59:39 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 07:29:32 by vfuster-         ###   ########.fr       */
+/*   Created: 2023/12/28 17:17:30 by vfuster-          #+#    #+#             */
+/*   Updated: 2024/01/05 08:32:04 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 /*****************************************************************************
  *                                 CONSTRUCTEUR                              *
 *****************************************************************************/
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name), _grade(grade)
-{
-	if (grade < 1)
-	{
-		throw std::range_error("Grade too high");
-	}
-    if (grade > 150)
-	{
-		throw std::range_error("Grade too low");
-	}
-}
-
-Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
+			: AForm("Shrubbery Creation Form", 145, 137), _target(target)
 {
 }
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
+			: AForm(other), _target(other._target)
+{
+}
+
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
 	if (this != &other)
 	{
-		this->_name = other._name;
-		this->_grade = other._grade;
+		AForm::operator=(other);
+		_target = other._target;
 	}
 	return *this;
 }
@@ -46,7 +40,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
  *                                 DESTRUCTEUR                               *
 *****************************************************************************/
 
-Bureaucrat::~Bureaucrat()
+ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 }
 
@@ -54,36 +48,19 @@ Bureaucrat::~Bureaucrat()
  *                                 FONCTIONS                                 *
 *****************************************************************************/
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
+void ShrubberyCreationForm::executeAction() const
 {
-	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
-	return os;
-}
-
-const std::string& Bureaucrat::getName() const
-{
-	return _name;
-}
-
-int Bureaucrat::getGrade() const
-{
-	return _grade;
-}
-
-void Bureaucrat::incrementGrade()
-{
-	if (_grade == 1)
+	std::ofstream outputFile((_target + "_shrubbery").c_str());
+	if (!outputFile)
 	{
-		throw std::range_error("Grade too high");
+		throw std::runtime_error("Failed to create the shrubbery file");
 	}
-	_grade--;
+
+	outputFile << "ASCII art of shrubbery...\n";
+	outputFile.close();
 }
 
-void Bureaucrat::decrementGrade()
+AForm* ShrubberyCreationForm::create(const std::string& target)
 {
-	if (_grade == 150)
-	{
-		throw std::range_error("Grade too low");
-	}
-	_grade++;
+	return new ShrubberyCreationForm(target);
 }

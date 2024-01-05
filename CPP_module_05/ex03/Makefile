@@ -6,11 +6,11 @@
 #    By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 09:01:46 by vfuster-          #+#    #+#              #
-#    Updated: 2024/01/05 07:35:19 by vfuster-         ###   ########.fr        #
+#    Updated: 2024/01/05 08:14:54 by vfuster-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = formNeeded
+NAME = formCreator
 
 # Nom du compilateur
 CC=g++
@@ -19,8 +19,7 @@ CC=g++
 CFLAGS=-Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC=main.cpp Bureaucrat.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp \
-	ShrubberyCreationForm.cpp AForm.cpp
+SRC=$(wildcard *.cpp)
 
 # Object files
 OBJ=$(SRC:.cpp=.o)

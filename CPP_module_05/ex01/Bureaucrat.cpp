@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:59:39 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/28 11:21:12 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/05 07:30:41 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
 	if (this != &other)
 	{
-		const_cast<std::string&>(this->_name) = other._name;
+		this->_name = other._name;
 		this->_grade = other._grade;
 	}
 	return *this;

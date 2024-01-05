@@ -1,44 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/28 10:59:39 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 07:29:32 by vfuster-         ###   ########.fr       */
+/*   Created: 2024/01/05 08:00:53 by vfuster-          #+#    #+#             */
+/*   Updated: 2024/01/05 08:24:39 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Intern.hpp"
+
+std::map<std::string, AForm* (*)(const std::string&)> Intern::formCreators;
 
 /*****************************************************************************
  *                                 CONSTRUCTEUR                              *
 *****************************************************************************/
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name), _grade(grade)
+Intern::Intern()
 {
-	if (grade < 1)
-	{
-		throw std::range_error("Grade too high");
-	}
-    if (grade > 150)
-	{
-		throw std::range_error("Grade too low");
-	}
+	formCreators["shrubbery creation"] = &ShrubberyCreationForm::create;
+	formCreators["robotomy request"] = &RobotomyRequestForm::create;
+	formCreators["presidential pardon"] = &PresidentialPardonForm::create;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade)
+Intern::Intern(const Intern& other)
 {
+	(void)other;
 }
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
+Intern& Intern::operator=(const Intern& other)
 {
-	if (this != &other)
-	{
-		this->_name = other._name;
-		this->_grade = other._grade;
-	}
+	(void)other;
 	return *this;
 }
 
@@ -46,7 +40,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
  *                                 DESTRUCTEUR                               *
 *****************************************************************************/
 
-Bureaucrat::~Bureaucrat()
+Intern::~Intern()
 {
 }
 
@@ -54,36 +48,18 @@ Bureaucrat::~Bureaucrat()
  *                                 FONCTIONS                                 *
 *****************************************************************************/
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
+AForm* Intern::makeForm(const std::string& formName, const std::string& target) const
 {
-	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
-	return os;
-}
+	std::map<std::string, AForm* (*)(const std::string&)>::const_iterator it = formCreators.find(formName);
 
-const std::string& Bureaucrat::getName() const
-{
-	return _name;
-}
-
-int Bureaucrat::getGrade() const
-{
-	return _grade;
-}
-
-void Bureaucrat::incrementGrade()
-{
-	if (_grade == 1)
+	if (it != formCreators.end())
 	{
-		throw std::range_error("Grade too high");
+		std::cout << "Intern creates " << formName << std::endl;
+		return it->second(target);
 	}
-	_grade--;
-}
-
-void Bureaucrat::decrementGrade()
-{
-	if (_grade == 150)
+	else
 	{
-		throw std::range_error("Grade too low");
+		std::cerr << "Intern couldn't create form: " << formName << std::endl;
+		return NULL;
 	}
-	_grade++;
 }

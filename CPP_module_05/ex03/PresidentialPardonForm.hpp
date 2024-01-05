@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:16:07 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 07:37:21 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/05 08:32:31 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-#define ROBOTOMYREQUESTFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+#define PRESIDENTIALPARDONFORM_HPP
 
 #include <string>
 
 #include "AForm.hpp"
 
-class RobotomyRequestForm : public AForm
+class PresidentialPardonForm : public AForm
 {
-
+	
 public:
-	RobotomyRequestForm(const std::string& target);
-	RobotomyRequestForm(const RobotomyRequestForm& other);
+	PresidentialPardonForm(const std::string& target);
+	PresidentialPardonForm(const PresidentialPardonForm& other);
 
-	RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
+	PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 
-	~RobotomyRequestForm();
+	~PresidentialPardonForm();
 
 	void executeAction() const;
+
+	static AForm* create(const std::string& target);
 
 private:
 	std::string _target;
@@ -36,3 +38,4 @@ private:
 };
 
 #endif
+

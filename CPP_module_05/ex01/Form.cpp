@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:59:39 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/28 17:06:53 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/05 07:32:39 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Form& Form::operator=(const Form& other)
 {
 	if (this != &other)
 	{
-		const_cast<bool&>(this->_isSigned) = other._isSigned;
+		this->_isSigned = other._isSigned;
 	}
 	return *this;
 }

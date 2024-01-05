@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:59:39 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 07:29:32 by vfuster-         ###   ########.fr       */
+/*   Updated: 2023/12/28 17:39:26 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
 	if (this != &other)
 	{
-		this->_name = other._name;
+		const_cast<std::string&>(this->_name) = other._name;
 		this->_grade = other._grade;
 	}
 	return *this;
@@ -87,3 +87,32 @@ void Bureaucrat::decrementGrade()
 	}
 	_grade++;
 }
+
+void Bureaucrat::signForm(AForm& form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << _name << " signs " << form.getName() << std::endl;
+	}
+
+	catch (const std::exception& e)
+	{
+		std::cerr << _name << " cannot sign " << form.getName() << " because: " << e.what() << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(const AForm& form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << _name << " executes " << form.getName() << std::endl;
+	}
+
+	catch (const std::exception& e)
+	{
+		std::cerr << _name << " cannot execute " << form.getName() << " because: " << e.what() << std::endl;
+	}
+}
+

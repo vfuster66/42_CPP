@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/28 10:59:39 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 07:29:32 by vfuster-         ###   ########.fr       */
+/*   Created: 2023/12/28 17:17:30 by vfuster-          #+#    #+#             */
+/*   Updated: 2024/01/05 08:32:45 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "RobotomyRequestForm.hpp"
+
+#include <cstdlib>
+#include <iostream>
 
 /*****************************************************************************
  *                                 CONSTRUCTEUR                              *
 *****************************************************************************/
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name), _grade(grade)
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
+		: AForm("Robotomy Request Form", 72, 45), _target(target)
 {
-	if (grade < 1)
-	{
-		throw std::range_error("Grade too high");
-	}
-    if (grade > 150)
-	{
-		throw std::range_error("Grade too low");
-	}
+	srand(time(NULL));
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
+		: AForm(other), _target(other._target)
 {
+	srand(time(NULL));
 }
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
+RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
 {
 	if (this != &other)
 	{
-		this->_name = other._name;
-		this->_grade = other._grade;
+		AForm::operator=(other);
+		_target = other._target;
 	}
 	return *this;
 }
@@ -46,7 +45,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
  *                                 DESTRUCTEUR                               *
 *****************************************************************************/
 
-Bureaucrat::~Bureaucrat()
+RobotomyRequestForm::~RobotomyRequestForm()
 {
 }
 
@@ -54,36 +53,20 @@ Bureaucrat::~Bureaucrat()
  *                                 FONCTIONS                                 *
 *****************************************************************************/
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
+void RobotomyRequestForm::executeAction() const
 {
-	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
-	return os;
-}
 
-const std::string& Bureaucrat::getName() const
-{
-	return _name;
-}
-
-int Bureaucrat::getGrade() const
-{
-	return _grade;
-}
-
-void Bureaucrat::incrementGrade()
-{
-	if (_grade == 1)
+	if (rand() % 2 == 0)
 	{
-		throw std::range_error("Grade too high");
+		std::cout << "Drilling noises... " << _target << " has been robotomized successfully!" << std::endl;
 	}
-	_grade--;
+	else
+	{
+		std::cout << "Drilling noises... Robotomy request for " << _target << " has failed." << std::endl;
+	}
 }
 
-void Bureaucrat::decrementGrade()
+AForm* RobotomyRequestForm::create(const std::string& target)
 {
-	if (_grade == 150)
-	{
-		throw std::range_error("Grade too low");
-	}
-	_grade++;
+	return new RobotomyRequestForm(target);
 }

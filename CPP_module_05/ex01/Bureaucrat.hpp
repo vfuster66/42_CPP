@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:59:43 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/28 11:22:12 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/05 07:30:49 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ public:
 	void decrementGrade();
 
 private:
-	const std::string _name;
+	std::string _name;
 	int _grade;
 
 };

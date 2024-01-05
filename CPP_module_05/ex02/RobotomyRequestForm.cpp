@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:17:30 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/28 17:30:07 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/05 07:37:45 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 	if (this != &other)
 	{
 		AForm::operator=(other);
-		const_cast<std::string&>(_target) = other._target;
+		_target = other._target;
 	}
 	return *this;
 }
