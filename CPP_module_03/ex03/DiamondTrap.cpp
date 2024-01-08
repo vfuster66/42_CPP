@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:49:35 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/27 14:38:35 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/08 11:56:52 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ DiamondTrap::~DiamondTrap()
 
 void DiamondTrap::whoAmI()
 {
-	std::cout << "I am " << this->_name << " and my ClapTrap name is " << ClapTrap::_name << "." << std::endl;
+	std::cout << "I am " << this->_name << " and my ClapTrap name is " << ClapTrap::_name << ".\n" << std::endl;
 }

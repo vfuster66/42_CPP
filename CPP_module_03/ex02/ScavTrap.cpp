@@ -6,13 +6,11 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:11:29 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/27 14:22:13 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/08 10:57:03 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
-
-#include <iostream>
 
 /*****************************************************************************
  *                                 CONSTRUCTEUR                              *
@@ -25,21 +23,21 @@ ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name)
 	this->_attackDamage = 20;
 
 	std::cout << "ScavTrap " << this->_name << " is created." << std::endl;
-}
+ }
 
-ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
-{
+ ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
+ {
 	std::cout << "ScavTrap copy constructor called for " << _name << std::endl;
-}
+ }
 
-ScavTrap &ScavTrap::operator=(const ScavTrap &other)
-{
+ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
+ {
 	if (this != &other)
 	{
 		ClapTrap::operator=(other);
 	}
 	return *this;
-}
+ }
 
 /*****************************************************************************
  *                                 DESTRUCTEUR                               *
@@ -54,10 +52,17 @@ ScavTrap::~ScavTrap()
  *                                 FONCTIONS                                 *
 *****************************************************************************/
 
-void	ScavTrap::attack(const std::string &target)
+void ScavTrap::attack(const std::string &target)
 {
-	std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " 
-			<< _attackDamage << " points of damage!" << std::endl;
+	if (_energyPoints > 0 && _hitPoints > 0)
+	{
+		std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+		_energyPoints--;
+	}
+	else
+	{
+		std::cout << "ScavTrap " << _name << " can't attack due to insufficient energy or hit points." << std::endl;
+	}
 }
 
 void	ScavTrap::guardGate()

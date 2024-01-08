@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:42:35 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/27 14:14:49 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/08 09:39:09 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,29 @@
 #define CLAPTRAP_HPP
 
 #include <string>
+#include <iostream>
 
 class ClapTrap
 {
 
 public:
-	ClapTrap(const std::string &target);
+	ClapTrap(const std::string &name);
 	ClapTrap(const ClapTrap &other);
-	
+
 	ClapTrap &operator=(const ClapTrap &other);
-	
+
 	~ClapTrap();
 
-	void	attack(const std::string &target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
+	void attack(const std::string &target);
+	void takeDamage(unsigned int amount);
+	void beRepaired(unsigned int amount);
+	void setAttackDamage(unsigned int damage);
 
 private:
-	std::string		_name;
-	unsigned int	_hitPoints;
-	unsigned int	_energyPoints;
-	unsigned int	_attackDamage;
+	std::string _name;
+	unsigned int _hitPoints;
+	unsigned int _energyPoints;
+	unsigned int _attackDamage;
 
 };
 

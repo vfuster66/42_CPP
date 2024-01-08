@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:48:43 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/27 14:34:40 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/08 11:47:00 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ public:
 	void whoAmI();
 
 private:
-    std::string _name;
+	std::string _name;
 
 };
 
 #endif
+

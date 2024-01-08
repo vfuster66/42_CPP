@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:42:30 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/27 14:29:52 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/08 11:20:31 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,17 @@ FragTrap::~FragTrap()
  *                                 FONCTIONS                                 *
 *****************************************************************************/
 
-void FragTrap::attack(const std::string& target)
+void FragTrap::attack(const std::string &target)
 {
-	std::cout << "FragTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+	if (_energyPoints > 0 && _hitPoints > 0)
+	{
+		std::cout << "FragTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+		_energyPoints--;
+	}
+	else
+	{
+		std::cout << "FragTrap " << _name << " can't attack due to insufficient energy or hit points." << std::endl;
+	}
 }
 
 void FragTrap::highFivesGuys(void)

@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:10:42 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/27 14:18:00 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/08 09:51:40 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define SCAVTRAP_HPP
 
 #include "ClapTrap.hpp"
+
+#include <iostream>
 
 class ScavTrap : public ClapTrap
 {

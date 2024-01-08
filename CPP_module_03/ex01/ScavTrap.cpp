@@ -6,13 +6,11 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:11:29 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/27 14:21:25 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/08 10:55:17 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
-
-#include <iostream>
 
 /*****************************************************************************
  *                                 CONSTRUCTEUR                              *
@@ -54,10 +52,17 @@ ScavTrap::~ScavTrap()
  *                                 FONCTIONS                                 *
 *****************************************************************************/
 
-void	ScavTrap::attack(const std::string &target)
+void ScavTrap::attack(const std::string &target)
 {
-	std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " 
-			<< _attackDamage << " points of damage!" << std::endl;
+	if (_energyPoints > 0 && _hitPoints > 0)
+	{
+		std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+		_energyPoints--;
+	}
+	else
+	{
+		std::cout << "ScavTrap " << _name << " can't attack due to insufficient energy or hit points." << std::endl;
+	}
 }
 
 void	ScavTrap::guardGate()

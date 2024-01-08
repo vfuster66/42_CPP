@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:43:34 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/27 14:23:06 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/08 10:56:36 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,17 @@ ClapTrap::~ClapTrap()
  *                                 FONCTIONS                                 *
 *****************************************************************************/
 
-void	ClapTrap::attack(const std::string &target)
+void ClapTrap::attack(const std::string &target)
 {
-	if (_energyPoints == 0 || _hitPoints == 0)
+	if (_energyPoints > 0 && _hitPoints > 0)
+	{
+		std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+		_energyPoints--;
+	}
+	else
 	{
 		std::cout << "ClapTrap " << _name << " can't attack because of low energy or health." << std::endl;
-
-		return ;
 	}
-	std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
-	_energyPoints--;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -92,15 +93,19 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if(_energyPoints == 0 || _hitPoints == 0)
+	if (_energyPoints > 0 && _hitPoints > 0)
+	{
+		_hitPoints += amount;
+		_energyPoints--;
+		std::cout << "ClapTrap " << _name << " repairs itself, gaining " << amount << " hit points!" << std::endl;
+	}
+	else
 	{
 		std::cout << "ClapTrap " << _name << " can't be repaired because of low energy or health." << std::endl;
-
-		return ;
 	}
-	
-	_hitPoints += amount;
-	_energyPoints--;
-	
-	std::cout << "ClapTrap " << _name << " repairs itself, gaining " << amount << " hit points!" << std::endl;
+}
+
+void ClapTrap::setAttackDamage(unsigned int damage)
+{
+	_attackDamage = damage;
 }

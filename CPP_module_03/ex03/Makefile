@@ -6,7 +6,7 @@
 #    By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 09:01:46 by vfuster-          #+#    #+#              #
-#    Updated: 2023/12/26 16:51:33 by vfuster-         ###   ########.fr        #
+#    Updated: 2024/01/08 09:49:50 by vfuster-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = diamondTrap
 CC=g++
 
 # Options de compilation
-CFLAGS=-Wall -Wextra -Werror -std=c++98
+CFLAGS=-Wall -Wextra -Werror -std=c++98 -Wshadow -Wno-shadow
 
 # Source files
 SRC=main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
