@@ -6,86 +6,56 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:42:17 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/08 09:47:59 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/08 12:00:15 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-// Test Constructeur/Destructeur
-void testConstructorAndDestructor()
+void testClapTrap()
 {
-	std::cout << "Test Constructor and Destructor:" << std::endl;
-	ClapTrap ct("TestClapTrap");
-}
+	// Test de construction et de destruction
+	std::cout << "\n--- Test ClapTrap Construction & Destruction ---" << std::endl;
+	ClapTrap claptrap("Clappy");
 
-// Test attaque avec energie
-void testAttackWithEnergy()
-{
-	std::cout << "\nTest Attack with Enough Energy:" << std::endl;
-	ClapTrap ct("Attacker");
-	ct.setAttackDamage(5);
-	ct.attack("Target");
-}
+	// Test d'attaque
+	std::cout << "\n--- Test ClapTrap Attack ---" << std::endl;
+	claptrap.setAttackDamage(10);
+	claptrap.attack("Enemy");
 
-// Test attaque jusqu'a ce qu'il n'y ait plus d' energie
-void testAttackWithoutEnergy()
-{
-	std::cout << "\nTest Attack without Enough Energy:" << std::endl;
-	ClapTrap ct("WeakAttacker");
-	ct.setAttackDamage(5);
+	// Test de prise de dégâts
+	std::cout << "\n--- Test ClapTrap Take Damage ---" << std::endl;
+	claptrap.takeDamage(5);
+
+	// Test de réparation
+	std::cout << "\n--- Test ClapTrap Repair ---" << std::endl;
+	claptrap.beRepaired(7);
+
+	// Test ClapTrap avec Hit Points insuffisants
+	std::cout << "\n--- Test ClapTrap with Insufficient Hit Points ---" << std::endl;
+	ClapTrap weakCT("WeakCT");
+	weakCT.takeDamage(10);
+	weakCT.attack("Enemy");
+
+	// Test ClapTrap avec Energy Points insuffisants
+	std::cout << "\n--- Test ClapTrap with Insufficient Energy Points ---" << std::endl;
+	ClapTrap tiredCT("TiredCT");
+	tiredCT.setAttackDamage(5);
 	for (int i = 0; i < 11; i++)
 	{
-		ct.attack("Target");
+		tiredCT.attack("Enemy");
 	}
-}
 
-// Test reparation energie
-void testRepairWithEnergy()
-{
-	std::cout << "\nTest Repair with Enough Energy:" << std::endl;
-	ClapTrap ct("Repairer");
-	ct.takeDamage(5);
-	ct.beRepaired(3);
-}
-
-// Test energie jusqu'a ce qu'il n'y en ait plus
-void testRepairWithoutEnergy()
-{
-	std::cout << "\nTest Repair without Enough Energy:" << std::endl;
-	ClapTrap ct("WeakRepairer");
-	ct.takeDamage(5);
-	for (int i = 0; i < 11; i++)
-	{
-		ct.beRepaired(1);
-	}
-}
-
-// Test prise de degats
-void testTakeDamage()
-{
-	std::cout << "\nTest Take Damage:" << std::endl;
-	ClapTrap ct("Victim");
-	ct.takeDamage(3);
-}
-
-// Test prise de degats eleves pour etre fatal
-void testFatalDamage()
-{
-	std::cout << "\nTest Fatal Damage:" << std::endl;
-	ClapTrap ct("Unfortunate");
-	ct.takeDamage(100);
+	// Test ClapTrap avec Attack Damage à 0
+	std::cout << "\n--- Test ClapTrap with Zero Attack Damage ---" << std::endl;
+	ClapTrap weakAttackCT("WeakAttackCT");
+	weakAttackCT.setAttackDamage(0);
+	weakAttackCT.attack("Enemy");
 }
 
 int main()
 {
-	testConstructorAndDestructor();
-	testAttackWithEnergy();
-	testAttackWithoutEnergy();
-	testRepairWithEnergy();
-	testRepairWithoutEnergy();
-	testTakeDamage();
-	testFatalDamage();
+	testClapTrap();
 
 	return 0;
 }
