@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   AAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 09:05:46 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/08 15:48:46 by vfuster-         ###   ########.fr       */
+/*   Created: 2023/12/27 08:59:21 by vfuster-          #+#    #+#             */
+/*   Updated: 2024/01/08 15:51:51 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "AAnimal.hpp"
 
 /*****************************************************************************
  *                                 CONSTRUCTEUR                              *
 *****************************************************************************/
 
-Dog::Dog() : AAnimal(), brain(new Brain())
+AAnimal::AAnimal() : _type("AAnimal")
 {
-	_type = "Dog";
-
-	std::cout << RED << "Dog constructed." << RESET << std::endl;
+	std::cout << YELLOW << "AAnimal constructed." << RESET << std::endl;
 }
 
-Dog::Dog(const Dog &other) : AAnimal(other), brain(new Brain(*other.brain))
+AAnimal::AAnimal(const AAnimal &other) : _type(other._type)
 {
-	std::cout << RED << "Dog copied." << RESET << std::endl;
+	std::cout << YELLOW << "AAnimal copied." << RESET << std::endl;
 }
 
-Dog &Dog::operator=(const Dog &other)
+AAnimal &AAnimal::operator=(const AAnimal &other)
 {
-	if (this != &other) 
+	if (this != &other)
 	{
-		AAnimal::operator=(other);
-		delete brain;
-		brain = new Brain(*other.brain);
+		this->_type = other._type;
 	}
 	return *this;
 }
@@ -43,18 +39,16 @@ Dog &Dog::operator=(const Dog &other)
  *                                 DESTRUCTEUR                               *
 *****************************************************************************/
 
-Dog::~Dog()
+AAnimal::~AAnimal()
 {
-	delete brain;
-
-	std::cout << RED << "Dog destructed." << RESET << std::endl;
+	std::cout << YELLOW << "Animal destructed." << RESET << std::endl;
 }
 
 /*****************************************************************************
  *                                 FONCTIONS                                 *
 *****************************************************************************/
 
-void	Dog::makeSound() const
+std::string AAnimal::getType() const
 {
-	std::cout << RED << "Woof!" << RESET << std::endl;
+	return _type;
 }

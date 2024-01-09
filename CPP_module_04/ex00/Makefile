@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: virginiefusterperez <virginiefusterperez@s +#+  +:+       +#+         #
+#    By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 09:01:46 by vfuster-          #+#    #+#              #
-#    Updated: 2023/12/27 17:41:34 by virginiefusterpe ###   ########.fr        #
+#    Updated: 2024/01/08 14:51:15 by vfuster-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = animalSound
 
 # Nom du compilateur
-CC=g++
+CC=c++
 
 # Options de compilation
 CFLAGS=-Wall -Wextra -Werror -std=c++98

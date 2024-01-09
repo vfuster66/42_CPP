@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:23:59 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/28 08:51:55 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/08 15:48:28 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int main()
 {
 	std::cout << "\n--- Test de Base : Création et Suppression d'Animaux ---" << std::endl;
 
-	const Animal* dog = new Dog();
-	const Animal* cat = new Cat();
+	const AAnimal* dog = new Dog();
+	const AAnimal* cat = new Cat();
 
 	std::cout << RED << dog->getType() << " sound : ";
 	dog->makeSound();

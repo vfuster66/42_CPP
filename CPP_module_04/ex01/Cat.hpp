@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginiefusterperez <virginiefusterperez@s +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 09:04:13 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/27 22:00:08 by virginiefusterpe ###   ########.fr       */
+/*   Updated: 2024/01/08 15:36:37 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 #include "Colors.hpp"
+
 #include <iostream>
 
 class Cat : public Animal

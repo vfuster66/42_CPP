@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 22:20:22 by virginiefus       #+#    #+#             */
-/*   Updated: 2023/12/28 09:48:08 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:11:01 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,27 @@ Character::Character(const Character & src)
 	*this = src;
 }
 
-Character & Character::operator=(const Character & rhs)
+Character &Character::operator=(const Character &rhs)
 {
 	if (this != &rhs)
 	{
-		this->name = rhs.name;
 		for (int i = 0; i < 4; ++i)
 		{
-			if (rhs.inventory[i] != 0)
+			delete inventory[i];
+			inventory[i] = NULL;
+		}
+
+		for (int i = 0; i < 4; ++i)
+		{
+			if (rhs.inventory[i] != NULL)
 			{
-				this->inventory[i] = rhs.inventory[i]->clone();
-			}
-			else
-			{
-				this->inventory[i] = 0;
+				inventory[i] = rhs.inventory[i]->clone();
 			}
 		}
+
+		name = rhs.name;
 	}
+
 	return *this;
 }
 
@@ -78,6 +82,12 @@ std::string const & Character::getName() const
 
 void Character::equip(AMateria* m)
 {
+	if (m == NULL)
+	{
+		std::cout << "Cannot equip a null Materia" << std::endl;
+		return;
+	}
+
 	for (int i = 0; i < 4; ++i)
 	{
 		if (inventory[i] == 0)
@@ -112,6 +122,12 @@ void Character::unequip(int idx)
 
 void Character::use(int idx, ICharacter& target)
 {
+	if (idx < 0 || idx >= 4)
+	{
+		std::cout << "Invalid index " << idx << std::endl;
+		return;
+	}
+
 	if (idx >= 0 && idx < 4)
 	{
 		if (inventory[idx] != 0)

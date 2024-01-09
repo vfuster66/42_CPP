@@ -3,23 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: virginiefusterperez <virginiefusterperez@s +#+  +:+       +#+         #
+#    By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 09:01:46 by vfuster-          #+#    #+#              #
-#    Updated: 2023/12/27 22:06:04 by virginiefusterpe ###   ########.fr        #
+#    Updated: 2024/01/08 15:50:01 by vfuster-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = animalSimulator
 
 # Nom du compilateur
-CC=g++
+CC=c++
 
 # Options de compilation
 CFLAGS=-Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC=main.cpp Dog.cpp Cat.cpp Animal.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRC=$(wildcard *.cpp)
 
 # Object files
 OBJ=$(SRC:.cpp=.o)

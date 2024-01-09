@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 22:20:22 by virginiefus       #+#    #+#             */
-/*   Updated: 2023/12/28 09:51:07 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:18:50 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ MateriaSource::~MateriaSource()
 
 void MateriaSource::learnMateria(AMateria* m)
 {
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 2; ++i)
 	{
-		if (learnedMaterias[i] == 0)
+		if (learnedMaterias[i] == NULL)
 		{
 			learnedMaterias[i] = m;
 			std::cout << "Learned Materia of type " << m->getType() << std::endl;
