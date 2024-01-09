@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 11:34:26 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/06 11:36:41 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:10:57 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@
 #include <iostream>
 
 template<typename T>
-
-class Iter
-{
-
-public:
-	static void iter(T* array, int length, void (*f)(const T&));
-
-};
+void iter(T* array, int length, void (*f)(const T&));
 
 #endif

@@ -3,35 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 11:35:40 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/06 16:46:53 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:16:03 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Iter.hpp"
 
 template<typename T>
-
-void Iter<T>::iter(T* array, int length, void (*f)(const T&))
+void iter(T* array, int length, void (*f)(const T&))
 {
-	if (array == nullptr)
+	if (array == NULL)
 	{
 		std::cerr << "Erreur : Tableau nul." << std::endl;
-		return ;
+		return;
 	}
 
 	if (length <= 0)
 	{
 		std::cerr << "Erreur : Longueur du tableau invalide." << std::endl;
-		return ;
+		return;
 	}
 
-	if (f == nullptr)
+	if (f == NULL)
 	{
 		std::cerr << "Erreur : Pointeur de fonction nul." << std::endl;
-		return ;
+		return;
 	}
 
 	for (int i = 0; i < length; i++)
@@ -40,12 +39,7 @@ void Iter<T>::iter(T* array, int length, void (*f)(const T&))
 	}
 }
 
-
-template class Iter<int>;
-template class Iter<double>;
-
 template<typename T>
-
 void printElement(const T& elem)
 {
 	std::cout << elem << std::endl;
@@ -74,28 +68,29 @@ int main()
 	char charArray[] = {'a', 'b', 'c', 'd', 'e'};
 
 	std::cout << "\nTest 1: Affichage du tableau int:" << std::endl;
-	Iter<int>::iter(intArray, 5, printElement);
+	iter(intArray, 5, printElement);
 
 	std::cout << "\nTest 2: Double des éléments du tableau int:" << std::endl;
-	Iter<int>::iter(intArray, 5, doubleElement);
+	iter(intArray, 5, doubleElement);
 
 	std::cout << "\nTest 3: Affichage du tableau double:" << std::endl;
-	Iter<double>::iter(doubleArray, 5, printElement);
+	iter(doubleArray, 5, printElement);
 
 	std::cout << "\nTest 4: Affichage du tableau de chaînes de caractères:" << std::endl;
-	Iter<std::string>::iter(stringArray, 5, printString);
+	iter(stringArray, 5, printString);
 
 	std::cout << "\nTest 5: Affichage du tableau de caractères:" << std::endl;
-	Iter<char>::iter(charArray, 5, printChar);
+	iter(charArray, 5, printChar);
 
+	// Tests supplémentaires pour les cas d'erreur
 	std::cout << "\nTest 6: Tentative avec un tableau nul:" << std::endl;
-	Iter<int>::iter(nullptr, 5, printElement);
+	iter<int>(NULL, 5, printElement);
 
 	std::cout << "\nTest 7: Tentative avec une longueur négative:" << std::endl;
-	Iter<int>::iter(intArray, -5, printElement);
+	iter(intArray, -5, printElement);
 
 	std::cout << "\nTest 8: Tentative avec un pointeur de fonction nul:" << std::endl;
-	Iter<int>::iter(intArray, 5, nullptr);
+	iter<int>(intArray, 5, NULL);
 
 	return 0;
 }
