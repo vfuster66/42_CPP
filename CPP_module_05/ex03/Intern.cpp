@@ -6,13 +6,11 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 08:00:53 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 08:24:39 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:56:28 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
-
-std::map<std::string, AForm* (*)(const std::string&)> Intern::formCreators;
 
 /*****************************************************************************
  *                                 CONSTRUCTEUR                              *
@@ -20,9 +18,6 @@ std::map<std::string, AForm* (*)(const std::string&)> Intern::formCreators;
 
 Intern::Intern()
 {
-	formCreators["shrubbery creation"] = &ShrubberyCreationForm::create;
-	formCreators["robotomy request"] = &RobotomyRequestForm::create;
-	formCreators["presidential pardon"] = &PresidentialPardonForm::create;
 }
 
 Intern::Intern(const Intern& other)
@@ -48,18 +43,35 @@ Intern::~Intern()
  *                                 FONCTIONS                                 *
 *****************************************************************************/
 
+// Initialisation du tableau des créateurs de formulaires
+const Intern::FormCreator Intern::formCreators[] =
+{
+	&ShrubberyCreationForm::create,
+	&RobotomyRequestForm::create,
+	&PresidentialPardonForm::create
+};
+
+// Initialisation du tableau des noms de formulaires
+const std::string Intern::formNames[] =
+{
+	"shrubbery creation",
+	"robotomy request",
+	"presidential pardon"
+};
+
+const int Intern::formCount = sizeof(formCreators) / sizeof(FormCreator);
+
 AForm* Intern::makeForm(const std::string& formName, const std::string& target) const
 {
-	std::map<std::string, AForm* (*)(const std::string&)>::const_iterator it = formCreators.find(formName);
+	for (int i = 0; i < formCount; ++i)
+	{
+		if (formNames[i] == formName)
+		{
+			std::cout << "Intern creates " << formName << std::endl;
+			return formCreators[i](target);
+		}
+	}
 
-	if (it != formCreators.end())
-	{
-		std::cout << "Intern creates " << formName << std::endl;
-		return it->second(target);
-	}
-	else
-	{
-		std::cerr << "Intern couldn't create form: " << formName << std::endl;
-		return NULL;
-	}
+	std::cerr << "Intern couldn't create form: " << formName << std::endl;
+	return NULL;
 }

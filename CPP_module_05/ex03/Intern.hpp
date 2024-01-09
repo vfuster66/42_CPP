@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 08:01:04 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 08:23:17 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:45:05 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 
 #include <string>
 #include <iostream>
-#include <map>
 
 class Intern
 {
@@ -36,7 +35,11 @@ public:
 	AForm* makeForm(const std::string& formName, const std::string& target) const;
 
 private:
-	static std::map<std::string, AForm* (*)(const std::string&)> formCreators;
+	typedef AForm* (*FormCreator)(const std::string&);
+
+	static const FormCreator formCreators[];
+	static const std::string formNames[];
+	static const int formCount;
 
 };
 

@@ -6,14 +6,14 @@
 #    By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 09:01:46 by vfuster-          #+#    #+#              #
-#    Updated: 2023/12/28 11:11:01 by vfuster-         ###   ########.fr        #
+#    Updated: 2024/01/08 14:52:21 by vfuster-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = bureaucrat
 
 # Nom du compilateur
-CC=g++
+CC=c++
 
 # Options de compilation
 CFLAGS=-Wall -Wextra -Werror -std=c++98

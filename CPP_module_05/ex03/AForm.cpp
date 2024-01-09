@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:17:30 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 07:36:52 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:35:40 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void AForm::execute(const Bureaucrat& executor) const
 std::ostream& operator<<(std::ostream& os, const AForm& form)
 {
 	os << "Form: " << form.getName()
-		<< ", Is Signed: ";
+		<< "\nIs Signed: ";
 	if (form.getIsSigned())
 	{
 		os << "Yes";
@@ -107,7 +107,7 @@ std::ostream& operator<<(std::ostream& os, const AForm& form)
 	{
 		os << "No";
 	}
-	os << ", Sign Grade: " << form.getSignGrade()
-		<< ", Execute Grade: " << form.getExecuteGrade();
+	os << "\nSign Grade: " << form.getSignGrade()
+		<< "\nExecute Grade: " << form.getExecuteGrade();
 	return os;
 }

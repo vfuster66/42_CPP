@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:17:30 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 07:37:45 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:32:45 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ void RobotomyRequestForm::executeAction() const
 
 	if (rand() % 2 == 0)
 	{
-		std::cout << "Drilling noises... " << _target << " has been robotomized successfully!" << std::endl;
+		std::cout << "Drilling noises... " << _target << " has been robotomized successfully!\n" << std::endl;
 	}
 	else
 	{
-		std::cout << "Drilling noises... Robotomy request for " << _target << " has failed." << std::endl;
+		std::cout << "Drilling noises... Robotomy request for " << _target << " has failed.\n" << std::endl;
 	}
 }

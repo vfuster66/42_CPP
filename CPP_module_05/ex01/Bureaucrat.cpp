@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:59:39 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 07:30:41 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:58:39 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name), _grade
 	{
 		throw std::range_error("Grade too high");
 	}
-    if (grade > 150)
+	if (grade > 150)
 	{
 		throw std::range_error("Grade too low");
 	}

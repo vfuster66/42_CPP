@@ -6,12 +6,11 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 11:08:25 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 07:50:15 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:05:46 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
@@ -22,13 +21,16 @@ int main()
 		Bureaucrat chief("Chief", 2);
 		Form taxForm("TaxForm", 5, 10);
 
-		std::cout << chief << std::endl;
-		std::cout << taxForm << std::endl;
+		std::cout << "-------------------------\n";
+		std::cout << "Bureaucrat: " << chief << std::endl;
+		std::cout << "Form: " << taxForm << std::endl;
+		std::cout << "Action: Attempting to Sign\n";
 
 		taxForm.beSigned(chief);
-		std::cout << "After signing: " << taxForm << std::endl;
-    }
-
+		std::cout << "Result: Success\n";
+		std::cout << "Updated Form Status: " << taxForm << "\n";
+	std::cout << "-------------------------\n";
+	}
 	catch (const std::exception& e)
 	{
 		std::cerr << "Exception caught: " << e.what() << std::endl;
@@ -40,17 +42,19 @@ int main()
 		Form permissionForm("PermissionForm", 140, 145);
 
 		intern.incrementGrade();
-		std::cout << intern << std::endl;
+		std::cout << "-------------------------\n";
+		std::cout << "Bureaucrat: " << intern << std::endl;
+		std::cout << "Form: " << permissionForm << std::endl;
+		std::cout << "Action: Attempting to Sign\n";
 
 		permissionForm.beSigned(intern);
-		std::cout << "After signing: " << permissionForm << std::endl;
-    }
-
+		std::cout << "Updated Form Status: " << permissionForm << "\n";
+	}
 	catch (const std::exception& e)
 	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
+		std::cout << "Result: Failure - Exception: " << e.what() << "\n";
+		std::cout << "-------------------------\n";
 	}
 
 	return 0;
 }
-

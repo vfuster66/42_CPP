@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:17:30 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 07:44:31 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:58:28 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,12 @@ void ShrubberyCreationForm::executeAction() const
 	std::ofstream outputFile((_target + "_shrubbery").c_str());
 	if (!outputFile)
 	{
-		throw std::runtime_error("Failed to create the shrubbery file");
+		std::cerr << "Failed to create the shrubbery file" << std::endl;
+		return;
 	}
 
 	outputFile << "ASCII art of shrubbery...\n";
 	outputFile.close();
+
+	std::cout << "Shrubbery Form created for " << _target << "\n" << std::endl;
 }
