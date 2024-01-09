@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 08:48:42 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 15:54:17 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:35:55 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ char ScalarConverter::toChar() const
 		throw std::runtime_error("Empty string");
 	}
 
+	if (_value.length() == 1 && std::isprint(_value[0]))
+	{
+		return _value[0];
+	}
+
 	long num = std::strtol(_value.c_str(), NULL, 10);
 
 	if (num < std::numeric_limits<char>::min() || num > std::numeric_limits<char>::max())
@@ -63,30 +68,26 @@ char ScalarConverter::toChar() const
 		throw std::runtime_error("Char conversion out of range");
 	}
 
-	return static_cast<char>(num);
+	char result = static_cast<char>(num);
+	if (!std::isprint(result))
+	{
+		throw std::runtime_error("Non displayable character");
+	}
+
+	return result;
 }
 
 int ScalarConverter::toInt() const
 {
-	if (_value.empty() || _value == "nan" || _value == "-inf" || _value == "+inf")
+	if (_value.empty())
 	{
-		throw std::runtime_error("Int conversion invalid");
-	}
-
-	if (_value.find_first_not_of("0123456789-") != std::string::npos)
-	{
-		throw std::runtime_error("Int conversion invalid");
+		throw std::runtime_error("Empty string");
 	}
 
 	char* end;
 	long num = std::strtol(_value.c_str(), &end, 10);
 
-	if (_value.find('.') != std::string::npos)
-	{
-		return static_cast<int>(num);
-	}
-
-	if (end != _value.c_str() && *end != '\0' && !std::isdigit(*end))
+	if (*end != '\0')
 	{
 		throw std::runtime_error("Int conversion invalid");
 	}
@@ -103,25 +104,25 @@ float ScalarConverter::toFloat() const
 {
 	if (_value.empty())
 	{
-		throw std::runtime_error("Float conversion invalid");
+		throw std::runtime_error("Empty string");
 	}
 
 	char* end;
-	double num = std::strtod(_value.c_str(), &end);
+	float num = static_cast<float>(strtod(_value.c_str(), &end));
 
 	if (*end != '\0')
 	{
 		throw std::runtime_error("Float conversion invalid");
 	}
 
-	return static_cast<float>(num);
+	return num;
 }
 
 double ScalarConverter::toDouble() const
 {
 	if (_value.empty())
 	{
-		throw std::runtime_error("Double conversion invalid");
+		throw std::runtime_error("Empty string");
 	}
 
 	char* end;

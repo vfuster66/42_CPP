@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:48:39 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 16:57:27 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:51:41 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <typeinfo>
 
 Base* generate()
 {
@@ -62,15 +61,15 @@ void identify(Base* p)
 
 void identify(Base& p)
 {
-	if (typeid(p) == typeid(A))
+	if (dynamic_cast<A*>(&p) != NULL)
 	{
 		std::cout << "Identified object as: A" << std::endl;
 	}
-	else if (typeid(p) == typeid(B))
+	else if (dynamic_cast<B*>(&p) != NULL)
 	{
 		std::cout << "Identified object as: B" << std::endl;
 	}
-	else if (typeid(p) == typeid(C))
+	else if (dynamic_cast<C*>(&p) != NULL)
 	{
 		std::cout << "Identified object as: C" << std::endl;
 	}
@@ -84,12 +83,23 @@ int main()
 {
 	srand(static_cast<unsigned>(time(0)));
 
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
+		std::cout << "Test #" << (i + 1) << std::endl;
+
+		// Génération et identification avec un pointeur
 		Base* obj = generate();
+		std::cout << "Identification using pointer: ";
 		identify(obj);
+
+		// Identification avec une référence
+		std::cout << "Identification using reference: ";
+		identify(*obj);
+
 		delete obj;
+		std::cout << std::endl;
 	}
 
 	return 0;
 }
+
