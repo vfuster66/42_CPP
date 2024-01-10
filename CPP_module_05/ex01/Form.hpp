@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 11:27:05 by vfuster-          #+#    #+#             */
-/*   Updated: 2023/12/28 17:09:09 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/10 09:24:17 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <ostream>
 
 #include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {

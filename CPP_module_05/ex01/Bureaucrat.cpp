@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:59:39 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/09 11:58:39 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/10 09:15:26 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,18 @@ void Bureaucrat::decrementGrade()
 		throw std::range_error("Grade too low");
 	}
 	_grade++;
+}
+
+void Bureaucrat::signForm(Form& form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << _name << " signs " << form.getName() << std::endl;
+	}
+
+	catch (const std::exception& e)
+	{
+		std::cerr << _name << " cannot sign " << form.getName() << " because: " << e.what() << std::endl;
+	}
 }

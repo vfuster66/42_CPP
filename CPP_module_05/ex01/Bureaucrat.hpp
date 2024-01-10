@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:59:43 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 07:30:49 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/10 09:23:37 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <string>
 #include <stdexcept>
 #include <ostream>
+#include <iostream>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -32,6 +36,7 @@ public:
 	int getGrade() const;
 	void incrementGrade();
 	void decrementGrade();
+	void signForm(Form& form);
 
 private:
 	std::string _name;

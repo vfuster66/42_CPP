@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 11:08:25 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/09 14:05:46 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/10 09:20:09 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main()
 		std::cout << "Form: " << taxForm << std::endl;
 		std::cout << "Action: Attempting to Sign\n";
 
-		taxForm.beSigned(chief);
+		chief.signForm(taxForm);
 		std::cout << "Result: Success\n";
 		std::cout << "Updated Form Status: " << taxForm << "\n";
 	std::cout << "-------------------------\n";
@@ -47,7 +47,7 @@ int main()
 		std::cout << "Form: " << permissionForm << std::endl;
 		std::cout << "Action: Attempting to Sign\n";
 
-		permissionForm.beSigned(intern);
+		intern.signForm(permissionForm);
 		std::cout << "Updated Form Status: " << permissionForm << "\n";
 	}
 	catch (const std::exception& e)
