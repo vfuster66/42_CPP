@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:20:01 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/06 18:28:23 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/10 07:50:18 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int main()
 	mstack.push(3);
 	mstack.push(83);
 	mstack.push(737);
-	std::cout << "Nombres 3, 5 et 737 ajoutés." << std::endl;
+	std::cout << "\nNombres 3, 83 et 737 ajoutés." << std::endl;
+	std::cout << "Taille actuelle : " << mstack.size() << std::endl;
 
 	std::cout << "\nItération sur les éléments de MutantStack :" << std::endl;
 
@@ -39,6 +40,7 @@ int main()
 	{
 		std::cout << *it << std::endl;
 	}
+	
 
 	return 0;
 }

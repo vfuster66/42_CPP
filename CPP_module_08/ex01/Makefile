@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: virginie <virginie@student.42.fr>          +#+  +:+       +#+         #
+#    By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 09:01:46 by vfuster-          #+#    #+#              #
-#    Updated: 2024/01/06 17:38:50 by virginie         ###   ########.fr        #
+#    Updated: 2024/01/08 14:53:37 by vfuster-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = span
 
 # Nom du compilateur
-CC=g++
+CC=c++
 
 # Options de compilation
 CFLAGS=-Wall -Wextra -Werror -std=c++98
