@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:57:51 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/08 21:00:18 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/10 07:59:54 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #include <string>
 #include <stack>
+#include <sstream>
+#include <iostream>
+#include <cstdlib>
 
 class RPN
 {

@@ -3,21 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:58:03 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/08 21:29:39 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/10 08:08:13 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-#include <sstream>
-#include <iostream>
-
 RPN::RPN()
 {
-
 }
 
 RPN::RPN(const RPN& other) : stack(other.stack)
@@ -103,5 +99,5 @@ bool RPN::performOperation(const char operation)
 			return false;
 	}
 
-    return true;
+	return true;
 }

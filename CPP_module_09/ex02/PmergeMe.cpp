@@ -3,119 +3,188 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 21:44:59 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/08 22:12:03 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/10 11:23:28 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-#include <iostream>
-#include <sys/time.h>
+
+#include <climits>
 
 // Constructeurs, destructeur et opérateur d'affectation
-PmergeMe::PmergeMe() {}
-PmergeMe::PmergeMe(const PmergeMe& other) {
-    // Copiez les données si nécessaire
+PmergeMe::PmergeMe()
+{
 }
-PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
-    if (this != &other) {
-        // Copiez les données si nécessaire
+
+PmergeMe::PmergeMe(const PmergeMe& other)
+{
+    (void)other;
+}
+
+PmergeMe& PmergeMe::operator=(const PmergeMe& other)
+{
+    if (this != &other)
+    {
     }
     return *this;
 }
-PmergeMe::~PmergeMe() {}
 
-// Méthodes pour trier et afficher les séquences
-void PmergeMe::sortAndDisplay(std::vector<int>& numbers) {
-    displaySequence("Before: ", numbers);
-    mergeInsertSort(numbers);
-    displaySequence("After: ", numbers);
+PmergeMe::~PmergeMe()
+{
 }
 
-void PmergeMe::sortAndDisplay(std::list<int>& numbers) {
-    displaySequence("Before: ", numbers);
-    mergeInsertSort(numbers);
-    displaySequence("After: ", numbers);
+void PmergeMe::sortAndDisplay(std::vector<int>& numbers)
+{
+    std::cout <<  YELLOW << "\nAvant le tri: \n" << RESET;
+    displaySequence("Vecteur: ", numbers);
+
+    clock_t start = clock();
+    sortVector(numbers);
+    clock_t end = clock();
+
+    std::cout << YELLOW << "\nAprès le tri: \n" << RESET;
+    displaySequence("Vecteur: ", numbers);
+
+    double elapsed = double(end - start) / CLOCKS_PER_SEC;
+    std::cout << GREEN << "\nTemps de traitement (std::vector): " << elapsed << " secondes.\n" << RESET << std::endl;
 }
 
-void PmergeMe::displaySequence(const std::string& text, const std::vector<int>& numbers) {
+void PmergeMe::sortAndDisplay(std::list<int>& numbers)
+{
+    std::cout << YELLOW << "\nAvant le tri: \n" << RESET;
+    displaySequence("Liste: ", numbers);
+
+    clock_t start = clock();
+    sortLinkedList(numbers);
+    clock_t end = clock();
+
+    std::cout << YELLOW << "\nAprès le tri: \n" << RESET;
+    displaySequence("Liste: ", numbers);
+
+    double elapsed = double(end - start) / CLOCKS_PER_SEC;
+    std::cout << GREEN << "\nTemps de traitement (std::list): " << elapsed << " secondes.\n" << RESET << std::endl;
+}
+
+void PmergeMe::displaySequence(const std::string& text, const std::vector<int>& numbers)
+{
     std::cout << text;
-    for (size_t i = 0; i < numbers.size(); ++i) {
+    for (size_t i = 0; i < numbers.size(); ++i)
+    {
         std::cout << numbers[i] << " ";
     }
     std::cout << std::endl;
 }
 
-void PmergeMe::displaySequence(const std::string& text, const std::list<int>& numbers) {
+void PmergeMe::displaySequence(const std::string& text, const std::list<int>& numbers)
+{
     std::cout << text;
-    for (std::list<int>::const_iterator it = numbers.begin(); it != numbers.end(); ++it) {
+    for (std::list<int>::const_iterator it = numbers.begin(); it != numbers.end(); ++it)
+    {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
 }
 
-void PmergeMe::mergeVector(std::vector<int>& vec, std::vector<int>& left, std::vector<int>& right) {
-    int leftIndex = 0, rightIndex = 0, vecIndex = 0;
-    int leftSize = left.size(), rightSize = right.size();
+void PmergeMe::mergeVector(std::vector<int>& vec, const std::vector<int>& left, const std::vector<int>& right)
+{
+    size_t leftIndex = 0, rightIndex = 0, vecIndex = 0;
 
-    while (leftIndex < leftSize && rightIndex < rightSize) {
-        if (left[leftIndex] <= right[rightIndex]) {
+    while (leftIndex < left.size() && rightIndex < right.size())
+    {
+        if (left[leftIndex] <= right[rightIndex])
+        {
             vec[vecIndex++] = left[leftIndex++];
-        } else {
+        }
+        else
+        {
             vec[vecIndex++] = right[rightIndex++];
         }
     }
 
-    while (leftIndex < leftSize) {
+    while (leftIndex < left.size())
+    {
         vec[vecIndex++] = left[leftIndex++];
     }
 
-    while (rightIndex < rightSize) {
+    while (rightIndex < right.size())
+    {
         vec[vecIndex++] = right[rightIndex++];
     }
 }
 
-void PmergeMe::sortVector(std::vector<int>& vec) {
-    int size = vec.size();
-    if (size <= 1) return;  // Base case for recursion
+void PmergeMe::sortVector(std::vector<int>& vec)
+{
+    if (vec.size() <= 1) return;
 
-    int mid = size / 2;
-    std::vector<int> left(vec.begin(), vec.begin() + mid); // Create left subvector
-    std::vector<int> right(vec.begin() + mid, vec.end());  // Create right subvector
+    std::vector<std::pair<int, int> > pairs;
+    for (size_t i = 0; i < vec.size(); i += 2)
+    {
+        if (i + 1 < vec.size())
+        {
+            pairs.push_back(std::make_pair(std::min(vec[i], vec[i + 1]), std::max(vec[i], vec[i + 1])));
+        }
+        else
+        {
+            pairs.push_back(std::make_pair(vec[i], INT_MAX));
+        }
+    }
 
-    sortVector(left);   // Sort the left subvector
-    sortVector(right);  // Sort the right subvector
+    std::vector<int> firstHalf;
+    for (std::vector<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); ++it)
+    {
+        std::pair<int, int>& pair = *it;
+        firstHalf.push_back(pair.first);
+    }
+    sortVector(firstHalf);
 
-    mergeVector(vec, left, right); // Merge the sorted subvectors
+    std::vector<int> secondHalf;
+    for (std::vector<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); ++it)
+    {
+        std::pair<int, int>& pair = *it;
+        if (pair.second != INT_MAX)
+        {
+            secondHalf.push_back(pair.second);
+        }
+    }
+    sortVector(secondHalf);
+
+    std::vector<int> merged(vec.size());
+    mergeVector(merged, firstHalf, secondHalf);
+    vec = merged;
 }
 
 void PmergeMe::mergeLinkedList(std::list<int>& list, std::list<int>& left, std::list<int>& right) {
-    list.clear(); // Clear the original list
+    list.clear();
 
     std::list<int>::iterator itLeft = left.begin();
     std::list<int>::iterator itRight = right.begin();
 
-    while (itLeft != left.end() && itRight != right.end()) {
-        if (*itLeft <= *itRight) {
+    while (itLeft != left.end() && itRight != right.end())
+    {
+        if (*itLeft <= *itRight)
+        {
             list.push_back(*itLeft++);
         } else {
             list.push_back(*itRight++);
         }
     }
 
-    // Append remaining elements (if any) from left and right lists
-    while (itLeft != left.end()) {
+    while (itLeft != left.end())
+    {
         list.push_back(*itLeft++);
     }
-    while (itRight != right.end()) {
+    while (itRight != right.end())
+    {
         list.push_back(*itRight++);
     }
 }
 
-void PmergeMe::sortLinkedList(std::list<int>& list) {
-    if (list.size() <= 1) return; // Base case for recursion
+void PmergeMe::sortLinkedList(std::list<int>& list)
+{
+    if (list.size() <= 1) return;
 
     // Dividing the list into two halves
     std::list<int>::iterator middle = list.begin();
