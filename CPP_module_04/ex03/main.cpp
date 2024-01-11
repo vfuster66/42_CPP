@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: parallels <parallels@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:23:59 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/08 16:14:54 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/11 21:35:01 by parallels        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main()
     src->learnMateria(new Cure());
 
     std::cout << "\nTrying to learn a third Materia (Ice) when the source is full\n" << std::endl;
-    src->learnMateria(new Ice());
+    src->learnMateria(new Ice()); // La gestion de cette Materia est prise en charge par MateriaSource
 
     ICharacter* me = new Character("me");
 
@@ -35,9 +35,12 @@ int main()
     AMateria* tmp;
 
     tmp = src->createMateria("ice");
-    me->equip(tmp);
+    if (tmp) me->equip(tmp);
+    else delete tmp; // Assurez-vous de supprimer si la création échoue
+
     tmp = src->createMateria("cure");
-    me->equip(tmp);
+    if (tmp) me->equip(tmp);
+    else delete tmp; // Assurez-vous de supprimer si la création échoue
 
     std::cout << "\nTrying to equip an unknown Materia type (fire)" << std::endl;
     tmp = src->createMateria("fire");
@@ -50,37 +53,56 @@ int main()
     me->use(0, *bob);
     me->use(1, *bob);
 
+    Character* characterMe = dynamic_cast<Character*>(me);
+
     std::cout << "\nTesting cloning of Materias:" << std::endl;
-    AMateria* iceClone = src->createMateria("ice")->clone();
-    me->equip(iceClone); 
+    tmp = src->createMateria("ice");
+    if (tmp) {
+        AMateria* iceClone = tmp->clone();
+        delete tmp; // Supprimez tmp après avoir créé le clone
+
+        if (iceClone && !characterMe->isInventoryFull()) {
+            me->equip(iceClone);
+        } else {
+            delete iceClone;
+        }
+    }
 
     std::cout << "\nTesting unequip and reequip mechanisms" << std::endl;
-    me->unequip(0); 
-    me->equip(new Cure()); 
+    AMateria* removedMateria = NULL;
+
+    //Character* characterMe = dynamic_cast<Character*>(me);
+    if (characterMe != NULL && characterMe->getInventorySlot(0) != NULL) {
+        removedMateria = characterMe->getInventorySlot(0);
+        characterMe->unequip(0);
+    }
+
+    delete removedMateria;
 
     std::cout << "\nTesting inventory full scenario" << std::endl;
     for (int i = 0; i < 4; i++) {
-        me->equip(new Ice());
+        AMateria* newIce = new Ice();
+        if (!characterMe->isInventoryFull()) {
+            me->equip(newIce);
+        } else {
+            delete newIce;
+        }
     }
 
     std::cout << "\nTesting Character copying" << std::endl;
-    Character* copyOfMe = new Character(*dynamic_cast<Character*>(me));
-    copyOfMe->use(0, *bob); 
-
-    std::cout << "\nTesting use after unequip" << std::endl;
-    me->use(0, *bob);
-
-    std::cout << "\nTrying to use a Materia at an invalid slot (100)" << std::endl;
-    me->use(100, *bob);
+    Character* copyOfMe = dynamic_cast<Character*>(me);
+    if (copyOfMe) {
+        Character* copyCharacter = new Character(*copyOfMe);
+        copyCharacter->use(0, *bob);
+        delete copyCharacter;
+    }
 
     std::cout << "\nCleaning up memory" << std::endl;
     delete bob;
     delete me;
-    delete copyOfMe; 
     delete src;
 
     return 0;
 }
-
 
 

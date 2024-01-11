@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: parallels <parallels@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 22:20:22 by virginiefus       #+#    #+#             */
-/*   Updated: 2024/01/08 16:11:01 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/11 21:02:53 by parallels        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,38 @@ Character::Character(std::string const & name) : name(name)
 	}
 }
 
-Character::Character(const Character & src)
+Character::Character(const Character &src) : name(src.name)
 {
-	*this = src;
+    for (int i = 0; i < 4; ++i) {
+        if (src.inventory[i] != NULL) {
+            inventory[i] = src.inventory[i]->clone();
+        } else {
+            inventory[i] = NULL;
+        }
+    }
 }
 
-Character &Character::operator=(const Character &rhs)
-{
-	if (this != &rhs)
-	{
-		for (int i = 0; i < 4; ++i)
-		{
-			delete inventory[i];
-			inventory[i] = NULL;
-		}
 
-		for (int i = 0; i < 4; ++i)
-		{
-			if (rhs.inventory[i] != NULL)
-			{
-				inventory[i] = rhs.inventory[i]->clone();
-			}
-		}
-
-		name = rhs.name;
-	}
-
-	return *this;
+Character &Character::operator=(const Character &rhs) {
+    if (this != &rhs) {
+        // Supprimez les Materia actuelles
+        for (int i = 0; i < 4; ++i) {
+            delete inventory[i];
+            inventory[i] = NULL;
+        }
+        // Copiez les données de rhs
+        for (int i = 0; i < 4; ++i) {
+            if (rhs.inventory[i] != NULL) {
+                inventory[i] = rhs.inventory[i]->clone();
+            } else {
+                inventory[i] = NULL;
+            }
+        }
+        name = rhs.name;
+    }
+    return *this;
 }
+
 
 /*****************************************************************************
  *                                 DESTRUCTEUR                               *
@@ -146,4 +150,18 @@ void Character::use(int idx, ICharacter& target)
 	}
 }
 
+AMateria* Character::getInventorySlot(int idx) const {
+    if (idx >= 0 && idx < 4) {
+        return inventory[idx];
+    }
+    return NULL;
+}
 
+bool Character::isInventoryFull() const {
+    for (int i = 0; i < 4; ++i) {
+        if (inventory[i] == 0) {
+            return false;
+        }
+    }
+    return true;
+}

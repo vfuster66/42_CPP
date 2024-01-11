@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginiefusterperez <virginiefusterperez@s +#+  +:+       +#+        */
+/*   By: parallels <parallels@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 22:32:31 by virginiefusterpe  #+#    #+#             */
-/*   Updated: 2023/12/27 22:33:34 by virginiefusterpe ###   ########.fr       */
+/*   Updated: 2024/01/11 20:53:59 by parallels        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@ public:
 	virtual void unequip(int idx);
 	virtual void use(int idx, ICharacter& target);
 
+	AMateria *getInventorySlot(int idx) const;
+	bool isInventoryFull() const;
+
 private:
 	std::string name;
 	AMateria *inventory[4];
+
 
 };
 

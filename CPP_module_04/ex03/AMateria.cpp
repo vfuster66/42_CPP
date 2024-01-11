@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: parallels <parallels@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 22:20:22 by virginiefus       #+#    #+#             */
-/*   Updated: 2023/12/28 10:52:49 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/11 20:47:15 by parallels        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,7 @@ void AMateria::use(ICharacter& target)
 {
 	std::cout << "Using AMateria on " << target.getName() << std::endl;
 }
+
+
+
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: parallels <parallels@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 22:20:22 by virginiefus       #+#    #+#             */
-/*   Updated: 2024/01/08 16:18:50 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/11 19:51:36 by parallels        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,30 @@ MateriaSource::MateriaSource(const MateriaSource &src)
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &rhs)
 {
-	if (this != &rhs)
-	{
-		for (int i = 0; i < 4; ++i)
-		{
-			if (rhs.learnedMaterias[i] != 0)
-			{
-				this->learnedMaterias[i] = rhs.learnedMaterias[i]->clone();
-			}
-			else
-			{
-				this->learnedMaterias[i] = 0;
-			}
-		}
-	}
-	return *this;
+    if (this != &rhs)
+    {
+        // Supprime les AMateria existants
+        for (int i = 0; i < 4; ++i)
+        {
+            delete learnedMaterias[i];
+        }
+
+        // Copie les AMateria de rhs
+        for (int i = 0; i < 4; ++i)
+        {
+            if (rhs.learnedMaterias[i] != 0)
+            {
+                this->learnedMaterias[i] = rhs.learnedMaterias[i]->clone();
+            }
+            else
+            {
+                this->learnedMaterias[i] = 0;
+            }
+        }
+    }
+    return *this;
 }
+
 
 /*****************************************************************************
  *                                 DESTRUCTEUR                               *
