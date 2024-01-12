@@ -6,7 +6,7 @@
 /*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 08:48:42 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/12 11:00:31 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/12 11:40:15 by virginie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ ScalarConverter::~ScalarConverter()
 // convertir en char
 char ScalarConverter::convertToChar(double value)
 {
-	if (value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max() || std::isnan(value))
-	{
-		throw std::runtime_error("impossible");
-	}
-	char c = static_cast<char>(value);
-	if (!isprint(c))
-	{
-		throw std::runtime_error("Non displayable");
-	}
-	return c;
+    if (std::isnan(value) || std::isinf(value) || value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max())
+    {
+        throw std::runtime_error("impossible");
+    }
+    char c = static_cast<char>(value);
+    if (!isprint(c))
+    {
+        throw std::runtime_error("Non displayable");
+    }
+    return c;
 }
 
 // convertir en int
@@ -70,10 +70,14 @@ float ScalarConverter::convertToFloat(double value) {
 // convertir en double
 double ScalarConverter::convertToDouble(const std::string& literal)
 {
-	if (literal.length() == 1 && isprint(literal[0]))
-	{
-		return static_cast<double>(literal[0]);
-	}
+    if (literal.length() == 1 && isalpha(literal[0]))
+    {
+        return static_cast<double>(literal[0]);
+    }
+    else if (literal.length() == 1 && isdigit(literal[0]))
+    {
+        return static_cast<double>(literal[0] - '0');
+    }
 	std::istringstream iss(literal);
 	double value;
 	iss >> value;
