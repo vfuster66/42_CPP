@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 08:46:30 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 14:58:52 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/12 10:54:04 by virginie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,27 @@
 
 #include <string>
 #include <iostream>
-#include <cstdlib>
-#include <limits>
+#include <sstream>
+#include <iomanip>
 
 class ScalarConverter
 {
+
 public:
+	static void convert(const std::string& literal);
 
+private:
 	ScalarConverter();
-	ScalarConverter(const std::string& value);
-	ScalarConverter(const ScalarConverter& other);
+	ScalarConverter(const ScalarConverter&);
 
-	ScalarConverter& operator=(const ScalarConverter& other);
+	ScalarConverter& operator=(const ScalarConverter&);
 
 	~ScalarConverter();
 
-	char toChar() const;
-	int toInt() const;
-	float toFloat() const;
-	double toDouble() const;
-
-private:
-	std::string _value;
-
+	static char convertToChar(double value);
+	static int convertToInt(double value);
+	static float convertToFloat(double value);
+	static double convertToDouble(const std::string& literal);
 };
 
 #endif
-

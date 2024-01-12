@@ -3,76 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 09:06:39 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 16:01:01 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/12 10:17:21 by virginie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-#include <iostream>
-#include <exception>
 
-int main(int argc, char* argv[])
+int main(int ac, char** av)
 {
-	if (argc != 2)
+	if (ac != 2)
 	{
-		std::cerr << "Usage: " << argv[0] << " <value to convert>" << std::endl;
-		
+		std::cerr << "Usage: " << av[0] << " <literal_to_convert>" << std::endl;
 		return 1;
 	}
 
-	ScalarConverter converter(argv[1]);
-	
 	try
 	{
-		char c = converter.toChar();
-		
-		std::cout << "Char: " << c << std::endl;
+		ScalarConverter::convert(av[1]);
 	}
-	catch (std::exception& e)
+	catch (const std::exception& e)
 	{
-		std::cout << "Char: impossible" << std::endl;
+		std::cerr << "Error: " << e.what() << std::endl;
+		return 1;
 	}
-
-	try
-	{
-		int num = converter.toInt();
-		
-		std::cout << "Int: " << num << std::endl;
-	}
-	catch (std::exception& e)
-	{
-		std::cout << "Int: impossible" << std::endl;
-	}
-
-	try
-	{
-		float f = converter.toFloat();
-		
-		std::cout << "Float: " << f << std::endl;
-	}
-	catch (std::exception& e)
-	{
-		std::cout << "Float: impossible" << std::endl;
-	}
-
-	try
-	{
-		double d = converter.toDouble();
-		
-		std::cout << "Double: " << d << std::endl;
-	}
-	catch (std::exception& e)
-	{
-		std::cout << "Double: impossible" << std::endl;
-	}
-
-	std::cout << std::endl;
 
 	return 0;
 }
-
-
-

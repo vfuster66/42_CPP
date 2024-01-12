@@ -3,135 +3,150 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 08:48:42 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/09 14:35:55 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/12 11:00:31 by virginie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-/*****************************************************************************
- *                                 CONSTRUCTEUR                              *
-*****************************************************************************/
-
-ScalarConverter::ScalarConverter() : _value("")
+ScalarConverter::ScalarConverter()
 {
 }
-
-ScalarConverter::ScalarConverter(const std::string& value) : _value(value)
-{
-}
-
-ScalarConverter::ScalarConverter(const ScalarConverter& other) : _value(other._value)
-{
-}
-
-ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other)
-{
-	if (this != &other)
-	{
-		this->_value = other._value;
-	}
-	return *this;
-}
-
-/*****************************************************************************
- *                                 DESTRUCTEUR                               *
-*****************************************************************************/
 
 ScalarConverter::~ScalarConverter()
 {
 }
 
-/*****************************************************************************
- *                                 FONCTIONS                                 *
-*****************************************************************************/
-
-char ScalarConverter::toChar() const
+// convertir en char
+char ScalarConverter::convertToChar(double value)
 {
-	if (_value.empty())
+	if (value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max() || std::isnan(value))
 	{
-		throw std::runtime_error("Empty string");
+		throw std::runtime_error("impossible");
 	}
-
-	if (_value.length() == 1 && std::isprint(_value[0]))
+	char c = static_cast<char>(value);
+	if (!isprint(c))
 	{
-		return _value[0];
+		throw std::runtime_error("Non displayable");
 	}
-
-	long num = std::strtol(_value.c_str(), NULL, 10);
-
-	if (num < std::numeric_limits<char>::min() || num > std::numeric_limits<char>::max())
-	{
-		throw std::runtime_error("Char conversion out of range");
-	}
-
-	char result = static_cast<char>(num);
-	if (!std::isprint(result))
-	{
-		throw std::runtime_error("Non displayable character");
-	}
-
-	return result;
+	return c;
 }
 
-int ScalarConverter::toInt() const
+// convertir en int
+int ScalarConverter::convertToInt(double value)
 {
-	if (_value.empty())
+	if (value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max() || std::isnan(value))
 	{
-		throw std::runtime_error("Empty string");
+		throw std::runtime_error("impossible");
 	}
-
-	char* end;
-	long num = std::strtol(_value.c_str(), &end, 10);
-
-	if (*end != '\0')
-	{
-		throw std::runtime_error("Int conversion invalid");
-	}
-
-	if (num < std::numeric_limits<int>::min() || num > std::numeric_limits<int>::max())
-	{
-		throw std::runtime_error("Int conversion out of range");
-	}
-
-	return static_cast<int>(num);
+	return static_cast<int>(value);
 }
 
-float ScalarConverter::toFloat() const
-{
-	if (_value.empty())
-	{
-		throw std::runtime_error("Empty string");
-	}
+// convertir en float
+float ScalarConverter::convertToFloat(double value) {
+    if (std::isnan(value)) {
+        return std::numeric_limits<float>::quiet_NaN();
+    }
 
-	char* end;
-	float num = static_cast<float>(strtod(_value.c_str(), &end));
+    if (std::isinf(value)) {
+        if (value > 0) {
+            return std::numeric_limits<float>::infinity();
+        } else {
+            return -std::numeric_limits<float>::infinity();
+        }
+    }
 
-	if (*end != '\0')
-	{
-		throw std::runtime_error("Float conversion invalid");
-	}
+    if (value > std::numeric_limits<float>::max() || value < -std::numeric_limits<float>::max()) {
+        throw std::runtime_error("impossible");
+    }
 
-	return num;
+    return static_cast<float>(value);
 }
 
-double ScalarConverter::toDouble() const
+
+// convertir en double
+double ScalarConverter::convertToDouble(const std::string& literal)
 {
-	if (_value.empty())
+	if (literal.length() == 1 && isprint(literal[0]))
 	{
-		throw std::runtime_error("Empty string");
+		return static_cast<double>(literal[0]);
+	}
+	std::istringstream iss(literal);
+	double value;
+	iss >> value;
+
+	if (literal == "nan" || literal == "nanf")
+	{
+		return std::numeric_limits<double>::quiet_NaN();
+	}
+	else if (literal == "+inf" || literal == "+inff")
+	{
+		return std::numeric_limits<double>::infinity();
+	}
+	else if (literal == "-inf" || literal == "-inff")
+	{
+		return -std::numeric_limits<double>::infinity();
 	}
 
-	char* end;
-	double num = std::strtod(_value.c_str(), &end);
-
-	if (*end != '\0')
+	if (iss.fail())
 	{
-		throw std::runtime_error("Double conversion invalid");
+		throw std::runtime_error("impossible");
 	}
 
-	return num;
+	return value;
+}
+
+void ScalarConverter::convert(const std::string& literal)
+{
+	double baseValue;
+
+	try
+	{
+		baseValue = convertToDouble(literal);
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "char: impossible\n";
+		std::cout << "int: impossible\n";
+		std::cout << "float: impossible\n";
+		std::cout << "double: impossible\n";
+		return;
+	}
+
+	try
+	{
+		char c = convertToChar(baseValue);
+		std::cout << "char: '" << c << "'\n";
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "char: " << e.what() << '\n';
+	}
+
+	try
+	{
+		int i = convertToInt(baseValue);
+		std::cout << "int: " << i << "\n";
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "int: " << e.what() << '\n';
+	}
+
+	try
+	{
+		float f = convertToFloat(baseValue);
+		std::cout << std::fixed << std::setprecision(1);
+		std::cout << "float: " << f << "f\n";
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "float: " << e.what() << '\n';
+	}
+
+	std::cout << std::fixed << std::setprecision(1);
+	std::cout << "double: " << baseValue << "\n";
 }
