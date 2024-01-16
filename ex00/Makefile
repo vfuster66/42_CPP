@@ -6,11 +6,11 @@
 #    By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 09:01:46 by vfuster-          #+#    #+#              #
-#    Updated: 2024/01/08 14:53:44 by vfuster-         ###   ########.fr        #
+#    Updated: 2024/01/08 14:53:31 by vfuster-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = mutatedAbomination
+NAME = easyfind
 
 # Nom du compilateur
 CC=c++

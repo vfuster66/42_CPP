@@ -3,61 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: parallels <parallels@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 21:02:01 by parallels         #+#    #+#             */
-/*   Updated: 2024/01/15 21:23:21 by parallels        ###   ########.fr       */
+/*   Created: 2024/01/06 18:20:01 by virginie          #+#    #+#             */
+/*   Updated: 2024/01/10 07:50:18 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Array.hpp"
+#include "MutantStack.hpp"
+#include <iostream>
 
-int main(int, char**)
+int main()
 {
-	Array<int> numbers(MAX_VAL);
-	int* mirror = new int[MAX_VAL];
-	srand(time(NULL));
-	for (int i = 0; i < MAX_VAL; i++)
-	{
-		const int value = rand();
-		numbers[i] = value;
-		mirror[i] = value;
-	}
-	//SCOPE
-	{
-		Array<int> tmp = numbers;
-		Array<int> test(tmp);
-	}
+	MutantStack<int> mstack;
 
-	for (int i = 0; i < MAX_VAL; i++)
-	{
-		if (mirror[i] != numbers[i])
-		{
-			std::cerr << "didn't save the same value!!" << std::endl;
-			return 1;
-		}
-	}
-	try
-	{
-		numbers[-2] = 0;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	try
-	{
-		numbers[MAX_VAL] = 0;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	std::cout << "\nAjout de nombres dans MutantStack." << std::endl;
+	mstack.push(5);
+	std::cout << "Nombre 5 ajouté." << std::endl;
+	mstack.push(17);
+	std::cout << "Nombre 17 ajouté." << std::endl;
 
-	for (int i = 0; i < MAX_VAL; i++)
+	std::cout << "\nValeur au sommet : " << mstack.top() << std::endl;
+
+	mstack.pop();
+	std::cout << "Element au sommet retiré, taille actuelle : " << mstack.size() << std::endl;
+
+	mstack.push(3);
+	mstack.push(83);
+	mstack.push(737);
+	std::cout << "\nNombres 3, 83 et 737 ajoutés." << std::endl;
+	std::cout << "Taille actuelle : " << mstack.size() << std::endl;
+
+	std::cout << "\nItération sur les éléments de MutantStack :" << std::endl;
+
+	for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it)
 	{
-		numbers[i] = rand();
+		std::cout << *it << std::endl;
 	}
-	delete [] mirror;//
+	
+
 	return 0;
 }
