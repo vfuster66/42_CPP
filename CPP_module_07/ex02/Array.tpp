@@ -3,74 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 16:58:16 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/06 17:24:12 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/16 07:40:31 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// Constructeur par défaut
 template <typename T>
-Array<T>::Array() : _elements(new T[0]), _size(0)
+Array<T>::Array() : _array(NULL), _size(0)
 {
 }
 
+// Constructeur avec taille spécifiée
 template <typename T>
-Array<T>::Array(unsigned int n) : _elements(new T[n]), _size(n)
+Array<T>::Array(unsigned int n) : _array(new T[n]()), _size(n)
 {
 }
 
+// Constructeur de copie
 template <typename T>
-Array<T>::Array(const Array& other) : _elements(new T[other._size]), _size(other._size)
+Array<T>::Array(const Array& other) : _array(NULL), _size(0)
 {
-	for (unsigned int i = 0; i < _size; i++)
-	{
-		_elements[i] = other._elements[i];
-	}
+	*this = other;
 }
 
+// Opérateur d'assignation
 template <typename T>
-Array<T>& Array<T>::operator=(const Array& other)
+Array<T>& Array<T>::operator=(const Array<T>& other)
 {
 	if (this != &other)
 	{
-		delete[] _elements;
+		delete[] _array;
 		_size = other._size;
-		_elements = new T[_size];
-
-		for (unsigned int i = 0; i < _size; i++)
+		_array = new T[_size];
+		for (unsigned int i = 0; i < _size; ++i)
 		{
-			_elements[i] = other._elements[i];
+			_array[i] = other._array[i];
 		}
 	}
-
 	return *this;
 }
 
+// Destructeur
+template <typename T>
+Array<T>::~Array()
+{
+	delete[] _array;
+}
+
+// Opérateur d'accès
 template <typename T>
 T& Array<T>::operator[](unsigned int index)
 {
-	if (index >= _size) 
+	if (index >= _size)
 	{
-		throw std::out_of_range("Index out of range");
+		throw std::out_of_range("Index out of bounds");
 	}
-
-	return _elements[index];
+	return _array[index];
 }
 
+// Accès constant à un élément
 template <typename T>
 const T& Array<T>::operator[](unsigned int index) const
 {
 	if (index >= _size)
 	{
-		throw std::out_of_range("Index out of range");
+		throw std::out_of_range("Index out of bounds");
 	}
-
-	return _elements[index];
+	return _array[index];
 }
 
+// Taille du tableau
 template <typename T>
-unsigned int Array<T>::getSize() const { return _size; }
-
-template <typename T>
-Array<T>::~Array() { delete[] _elements; }
+unsigned int Array<T>::getSize() const
+{
+	return _size;
+}

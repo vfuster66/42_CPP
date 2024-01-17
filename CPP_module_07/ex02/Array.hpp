@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 16:54:01 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/06 17:15:11 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/16 07:40:14 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <cstdlib>
+
+#define MAX_VAL 750
 
 template <typename T>
-
 class Array
 {
 
@@ -27,15 +29,16 @@ public:
 	Array(const Array& other);
 
 	Array& operator=(const Array& other);
-	T& operator[](unsigned int index);
-	const T& operator[](unsigned int index) const;
 
 	~Array();
+
+	T& operator[](unsigned int index);
+	const T& operator[](unsigned int index) const;
 
 	unsigned int getSize() const;
 
 private:
-	T* _elements;
+	T* _array;
 	unsigned int _size;
 
 };
