@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.tpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:00:40 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/06 18:16:18 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/16 08:20:28 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,3 +84,12 @@ int Span::longestSpan() const
 			*std::min_element(_numbers.begin(), _numbers.end());
 }
 
+template <typename Iterator>
+void Span::addRange(Iterator begin, Iterator end)
+{
+	if (std::distance(begin, end) + _numbers.size() > _maxSize)
+	{
+		throw std::length_error("Ajout de trop d'éléments");
+	}
+	_numbers.insert(_numbers.end(), begin, end);
+}

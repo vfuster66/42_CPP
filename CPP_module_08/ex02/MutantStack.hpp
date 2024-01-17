@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:20:15 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/06 18:22:00 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/16 09:56:24 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define MUTANTSTACK_HPP
 
 #include <stack>
+#include <iostream>
+#include <list>
 
 template<typename T>
 class MutantStack : public std::stack<T>

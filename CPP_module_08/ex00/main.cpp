@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 17:43:06 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/06 17:55:20 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/16 09:48:10 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
-
-#include <vector>
-#include <iostream>
-
-#include "easyfind.hpp"
-#include <vector>
-#include <iostream>
 
 int main()
 {

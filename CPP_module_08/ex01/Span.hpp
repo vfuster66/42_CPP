@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 17:59:34 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/06 18:06:09 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/16 08:38:03 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <vector>
 #include <algorithm>
 #include <exception>
+#include <cstdlib>
+#include <ctime>
 
 class Span
 {
@@ -31,6 +33,8 @@ public:
 	void addNumber(int number);
 	int shortestSpan() const;
 	int longestSpan() const;
+	template <typename Iterator>
+	void addRange(Iterator begin, Iterator end);
 
 private:
 	std::vector<int> _numbers;
