@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:43:30 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/10 08:07:18 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/16 14:36:31 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <string>
 #include <map>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 class BitcoinExchange
 {

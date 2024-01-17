@@ -6,47 +6,79 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 21:45:09 by virginie          #+#    #+#             */
-/*   Updated: 2024/01/10 10:25:13 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:58:09 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-#include <iostream>
-#include <vector>
-#include <list>
-#include <cstdlib>
+int main(int ac, char** argv)
+{
+	if (ac < 2)
+	{
+		std::cerr << "Usage: " << argv[0] << " [list of positive integers] OR [shell_command]" << std::endl;
+		return 1;
+	}
 
-int main(int argc, char** argv) {
-    if (argc < 2) {
-        std::cerr << "Usage: " << argv[0] << " [list of positive integers]" << std::endl;
-        return 1;
-    }
+	std::string firstArg(argv[1]);
+	bool isShellCommand = (firstArg.find('|') != std::string::npos);
 
-    std::vector<int> numbersVector;
-    std::list<int> numbersList;
+	if (isShellCommand)
+	{
+		FILE* pipe = popen(firstArg.c_str(), "r");
+		if (!pipe)
+		{
+			std::cerr << "Error: Failed to execute the shell command." << std::endl;
+			return 1;
+		}
 
-    // Remplir le vector et la list avec les nombres passés en argument
-    for (int i = 1; i < argc; ++i) {
-        int value = std::atoi(argv[i]);
-        if (value < 0) {
-            std::cerr << "Error: Only positive integers are allowed." << std::endl;
-            return 1;
-        }
-        numbersVector.push_back(value);
-        numbersList.push_back(value);
-    }
+		std::vector<int> numbersVector;
+		std::list<int> numbersList;
 
-    PmergeMe pmergeMe;
+		int number;
+		while (fscanf(pipe, "%d", &number) == 1)
+		{
+			numbersVector.push_back(number);
+			numbersList.push_back(number);
+		}
 
-    // Utiliser sortAndDisplay pour le vector
-    std::cout << RED << "\nTri pour std::vector: " << RESET << std::endl;
-    pmergeMe.sortAndDisplay(numbersVector);
+		pclose(pipe);
 
-    // Utiliser sortAndDisplay pour la list
-    std::cout << RED << "Tri pour std::list: " << RESET << std::endl;
-    pmergeMe.sortAndDisplay(numbersList);
+		PmergeMe pmergeMe;
 
-    return 0;
+		std::cout << RED << "\nTri pour std::vector: " << RESET << std::endl;
+		pmergeMe.sortAndDisplay(numbersVector);
+
+		std::cout << RED << "Tri pour std::list: " << RESET << std::endl;
+		pmergeMe.sortAndDisplay(numbersList);
+	}
+	else
+	{
+		std::vector<int> numbersVector;
+		std::list<int> numbersList;
+
+		for (int i = 1; i < ac; ++i)
+		{
+			int value = std::atoi(argv[i]);
+			if (value < 0)
+			{
+				std::cerr << "Error: Only positive integers are allowed." << std::endl;
+				return 1;
+			}
+			numbersVector.push_back(value);
+			numbersList.push_back(value);
+		}
+
+		PmergeMe pmergeMe;
+
+		std::cout << RED << "\nTri pour std::vector: " << RESET << std::endl;
+		pmergeMe.sortAndDisplay(numbersVector);
+
+		std::cout << RED << "Tri pour std::list: " << RESET << std::endl;
+		pmergeMe.sortAndDisplay(numbersList);
+	}
+
+	return 0;
 }
+
 
