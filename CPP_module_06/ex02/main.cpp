@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:48:39 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/09 14:51:41 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:44:56 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void identify(Base& p)
 	}
 	else
 	{
-		std::cout << "Identified object as: Unknown" << std::endl;
+	std::cout << "Identified object as: Unknown" << std::endl;
 	}
 }
 

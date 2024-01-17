@@ -6,7 +6,7 @@
 /*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:06:40 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/05 16:20:11 by vfuster-         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:35:10 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,16 @@ class Serializer
 {
 
 public:
-	Serializer();
-	Serializer(const Serializer& other);
-
-	Serializer& operator=(const Serializer& other);
-
 	~Serializer();
 
 	static uintptr_t serialize(Data* ptr);
 	static Data* deserialize(uintptr_t raw);
+
+private:
+	Serializer();
+	Serializer(const Serializer& other);
+
+	Serializer& operator=(const Serializer& other);
 
 };
 

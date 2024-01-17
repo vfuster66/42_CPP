@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginie <virginie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfuster- <vfuster-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 08:46:30 by vfuster-          #+#    #+#             */
-/*   Updated: 2024/01/12 10:54:04 by virginie         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:39:18 by vfuster-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <string>
 #include <iostream>
+#include <cstdlib>
+#include <limits>
 #include <sstream>
 #include <iomanip>
 
@@ -22,20 +24,28 @@ class ScalarConverter
 {
 
 public:
-	static void convert(const std::string& literal);
+	static void convert(const std::string &literal);
 
 private:
 	ScalarConverter();
-	ScalarConverter(const ScalarConverter&);
-
-	ScalarConverter& operator=(const ScalarConverter&);
-
 	~ScalarConverter();
 
-	static char convertToChar(double value);
-	static int convertToInt(double value);
-	static float convertToFloat(double value);
-	static double convertToDouble(const std::string& literal);
+	// Méthodes privées pour la conversion vers chaque type
+	static char _toChar(double value);
+	static int _toInt(double value);
+	static float _toFloat(double value);
+	static double _toDouble(const std::string &literal);
+
+	// Méthodes utilitaires
+	static bool _isDisplayable(char c);
+	static bool _isPseudoLiteral(const std::string &literal);
+	static bool isNan(double value);
+	static bool isInf(double value);
+	static std::string _toString(char c);
+	static std::string _toString(int i);
+	static std::string _toString(float f);
+	static std::string _toString(double d);
+
 };
 
 #endif
